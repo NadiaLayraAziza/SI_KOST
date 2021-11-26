@@ -20,20 +20,23 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
                             <div class="collapse navbar-collapse" id="footerNavContent">
                                 <ul class="navbar-nav ml-auto">
+                                    {{-- <div class="social-info d-flex justify-content-between">
+                                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </div> --}}
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
+                                        <a class="nav-link" href="index.html"><i class="fa fa-facebook" aria-hidden="true"></i>  Bejo Kost</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="shop.html">Shop</a>
+                                        <a class="nav-link" href="shop.html"><i class="fa fa-instagram" aria-hidden="true"></i>  @Bejo_kost</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="product-details.html">Product</a>
+                                        <a class="nav-link" href="product-details.html"><i class="fa fa-twitter" aria-hidden="true"></i>  BejoKost</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="cart.html">Cart</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="checkout.html">Checkout</a>
+                                        <a class="nav-link" href="cart.html"><i class="fa fa-email" aria-hidden="true"></i>  bejokos@gmail.com</a>
                                     </li>
                                 </ul>
                             </div>

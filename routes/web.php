@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenyewaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::get('/home', function () {
 Route::get('/home/user', function () {
     return view('User.home');
 });
+
+Route::resource('penyewa', PenyewaController::class);
+

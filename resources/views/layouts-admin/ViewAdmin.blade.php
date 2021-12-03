@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marvel Free Bootstrap Admin Template</title>
+    <title>Sistem Informasi Kost</title>
     <!-- Bootstrap Styles-->
     <link href="{{asset('assets-admin/css/bootstrap.css')}}" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -15,6 +15,8 @@
     <link href="{{asset('assets-admin/css/custom-styles.css')}}" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="{{asset('assets-admin/js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets-admin/js/Lightweight-Chart/cssCharts.css')}}">
 </head>
 
@@ -41,18 +43,22 @@
     <script src="{{asset('assets-admin/js/morris/raphael-2.1.0.min.js')}}"></script>
     <script src="{{asset('assets-admin/js/morris/morris.js')}}"></script>
 
-
 	<script src="{{asset('assets-admin/js/easypiechart.js')}}"></script>
 	<script src="{{asset('assets-admin/js/easypiechart-data.js')}}"></script>
 
 	 <script src="{{asset('assets-admin/js/Lightweight-Chart/jquery.chart.js')}}"></script>
 
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="{{asset('assets-admin/js/dataTables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('assets-admin/js/dataTables/dataTables.bootstrap.js')}}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+
     <!-- Custom Js -->
     <script src="{{asset('assets-admin/js/custom-scripts.js')}}"></script>
-
-      <script>
-
-      </script>
 
 </body>
 

@@ -2,7 +2,7 @@
     <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
 
-            {{-- <li>
+            <li>
                 <a  href="index.html"><i class="fa fa-dashboard"></i> Beranda</a>
             </li>
             <li>
@@ -12,17 +12,17 @@
                 <a  href="chart.html"><i class="fa fa-bar-chart-o"></i> Penyedia Kost</a>
             </li>
             <li>
-                <a  href="tab-panel.html"><i class="fa fa-qrcode"></i> Penyewa Kost</a>
+                <a class="active-menu @yield('menu_penyewa')" href={{ route('penyewa.index') }}><i class="fa fa-qrcode"></i> Penyewa Kost</a>
             </li>
 
             <li>
                 <a  href="table.html"><i class="fa fa-table"></i> Transaksi</a>
             </li>
             <li>
-                <a class="active-menu" href="form.html"><i class="fa fa-edit"></i> Report </a>
-            </li> --}}
+                <a href="form.html"><i class="fa fa-edit"></i> Report </a>
+            </li>
             {{-- admin --}}
-            <li>
+            {{-- <li>
                 <a href="index.html"><i class="fa fa-dashboard"></i> Home</a>
             </li>
             <li>
@@ -30,39 +30,8 @@
             </li>
             <li>
                 <a class="active-menu" href="form.html"><i class="fa fa-edit"></i> Report </a>
-            </li>
-
-
-            {{-- <li>
-                <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">Second Level Link</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Link</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">Third Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Link</a>
-                            </li>
-
-                        </ul>
-
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="empty.html"><i class="fa fa-fw fa-file"></i> Empty Page</a>
             </li> --}}
+
         </ul>
 
     </div>

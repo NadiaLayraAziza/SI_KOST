@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenyewaTable extends Migration
+class CreatePenyediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreatePenyewaTable extends Migration
      */
     public function up()
     {
-        Schema::create('penyewa', function (Blueprint $table) {
-            $table->bigIncrements('id_penyewa');
+        Schema::create('penyedia', function (Blueprint $table) {
+            $table->bigIncrements('id_penyedia');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->string('telp_ortu');
-            $table->string('jangka_waktu');
-            $table->integer('jumlah_waktu');
-            $table->date('tgl_mulai');
+            $table->string('nama_kost');
+            $table->text('alamat_kost');
+            $table->string('foto_kost');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreatePenyewaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penyewa');
+        Schema::dropIfExists('penyedia');
     }
 }

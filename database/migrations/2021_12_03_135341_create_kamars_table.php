@@ -15,8 +15,6 @@ class CreateKamarsTable extends Migration
     {
         Schema::create('kamars', function (Blueprint $table) {
             $table->bigIncrements('id_kamar');
-            $table->unsignedBigInteger('id_penyedia');
-            $table->foreign('id_penyedia')->references('id')->on('penyedia');
             $table->string('tipe_kamar');
             $table->string('fasilitas');
             $table->integer('Harga_Tahunan');

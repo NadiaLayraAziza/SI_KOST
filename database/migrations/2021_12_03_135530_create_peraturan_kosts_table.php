@@ -15,9 +15,7 @@ class CreatePeraturanKostsTable extends Migration
     {
         Schema::create('peraturan_kosts', function (Blueprint $table) {
             $table->bigIncrements('id_peraturan');
-            $table->unsignedBigInteger('id_penyedia');
-            $table->foreign('id_penyedia')->references('id')->on('penyedia');
-            $table->string('peraturan');
+            $table->text('peraturan');
             $table->timestamps();
         });
     }

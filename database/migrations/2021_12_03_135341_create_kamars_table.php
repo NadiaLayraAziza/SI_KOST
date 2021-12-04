@@ -14,15 +14,16 @@ class CreateKamarsTable extends Migration
     public function up()
     {
         Schema::create('kamars', function (Blueprint $table) {
-            $table->string('id_kamar', 20)->primary();
-            $table->foreign('id_penyedia', 20)->references('id')->on('penyedia');
-            $table->string('tipe_kamar', 50);
-            $table->string('fasilitas', 50);
+            $table->bigIncrements('id_kamar');
+            $table->unsignedBigInteger('id_penyedia');
+            $table->foreign('id_penyedia')->references('id')->on('penyedia');
+            $table->string('tipe_kamar');
+            $table->string('fasilitas');
             $table->integer('Harga_Tahunan');
             $table->integer('Harga_bulanan');
             $table->integer('Harga_mingguan');
             $table->integer('Harga_harian');
-            $table->string('Foto_Kamar',50)->nullable();
+            $table->string('Foto_Kamar')->nullable();
             $table->timestamps();
         });
     }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyewa;
+use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenyewaController extends Controller
 {
@@ -13,7 +16,7 @@ class PenyewaController extends Controller
      */
     public function index()
     {
-        return view('SuperAdmin.penyewa.index');
+        return view('SuperAdmin.penyewa.index', compact('penyewa'));
     }
 
     /**
@@ -54,9 +57,13 @@ class PenyewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_penyewa)
     {
-        //
+        $penyewa = Penyewa::with('users','penyedia','kamar')->find($id_penyewa);
+        $users = User::all();
+        // $penyedia = Penyedia::all();
+        // $kamar = Kamar::all();
+        return view('SuperAdmin.edit', compact('penyewa', 'users', 'penyedia', 'kamar'));
     }
 
     /**
@@ -66,9 +73,25 @@ class PenyewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_penyewa)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_user' => 'required',
+            'telp_ortu' => 'required',
+            'kost' => 'required',
+            'id_kmr' => 'required',
+            'jangka_waktu' => 'required',
+            'jumlah_waktu' => 'required',
+            'tgl_mulai' => 'required',
+            ]);
+
+        //fungsi eloquent untuk mengupdate data inputan kita
+            Penyewa::find($id_penyewa)->update($request->all());
+
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+            Alert::success('Success', 'Data Penyewa Barang Berhasil Diupdate');
+            return redirect()->route('penyewa.index');
     }
 
     /**
@@ -77,8 +100,10 @@ class PenyewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_penyewa)
     {
-        //
+        Penyewa::find($id_penyewa)->delete();
+        Alert::success('Success', 'Data Penyewa berhasil dihapus');
+        return redirect()->route('penyewa.index');
     }
 }

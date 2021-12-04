@@ -48,6 +48,7 @@
     <!-- ##### Footer Area Start ##### -->
     @include('layouts-user.footer')
     <!-- ##### Footer Area End ##### -->
+    @include('sweetalert::alert')
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="{{asset('assets-user/js/jquery/jquery-2.2.4.min.js')}}"></script>

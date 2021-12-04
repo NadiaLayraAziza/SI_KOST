@@ -14,9 +14,10 @@ class CreatePeraturanKostsTable extends Migration
     public function up()
     {
         Schema::create('peraturan_kosts', function (Blueprint $table) {
-            $table->string('id_peraturan', 20)->primary();
-            $table->foreign('id_penyedia', 20)->references('id')->on('penyedia');
-            $table->string('peraturan', 5000);
+            $table->bigIncrements('id_peraturan');
+            $table->unsignedBigInteger('id_penyedia');
+            $table->foreign('id_penyedia')->references('id')->on('penyedia');
+            $table->string('peraturan');
             $table->timestamps();
         });
     }

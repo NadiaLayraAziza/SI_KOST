@@ -29,6 +29,7 @@
 
 		@yield('content')
         <!-- /. PAGE WRAPPER  -->
+        @include('sweetalert::alert')
     </div>
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penyewa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenyewaController extends Controller
 {

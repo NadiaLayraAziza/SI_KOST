@@ -46,9 +46,10 @@ class PenyewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_penyewa)
     {
-        //
+        $penyewa = Penyewa::with('users','penyewa','kamar')->find($id_penyewa);
+        return view('SuperAdmin.penyewa.show', compact('penyewa'));
     }
 
     /**

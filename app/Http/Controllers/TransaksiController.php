@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
 {
@@ -13,7 +15,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        return view('SuperAdmin.transaksi.index', compact('transaksi'));
     }
 
     /**
@@ -77,8 +79,10 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_transaksi)
     {
-        //
+        Transaksi::find($id_transaksi)->delete();
+        Alert::success('Success', 'Data Transaksi berhasil dihapus');
+        return redirect()->route('transaksi.index');
     }
 }

@@ -33,3 +33,5 @@ Route::get('/home/user', function () {
 
 Route::resource('penyewa', PenyewaController::class);
 
+Route::resource('transaksi', PenyewaController::class);
+

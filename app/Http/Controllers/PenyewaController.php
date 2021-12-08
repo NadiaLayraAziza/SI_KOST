@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kamar;
+use App\Models\Penyedia;
 use App\Models\Penyewa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -62,9 +64,9 @@ class PenyewaController extends Controller
     {
         $penyewa = Penyewa::with('users','penyedia','kamar')->find($id_penyewa);
         $users = User::all();
-        // $penyedia = Penyedia::all();
-        // $kamar = Kamar::all();
-        return view('SuperAdmin.edit', compact('penyewa', 'users', 'penyedia', 'kamar'));
+        $penyedia = Penyedia::all();
+        $kamar = Kamar::all();
+        return view('SuperAdmin.penyewa.edit', compact('penyewa', 'users', 'penyedia', 'kamar'));
     }
 
     /**

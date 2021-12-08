@@ -35,3 +35,5 @@ Route::resource('penyewa', PenyewaController::class);
 
 Route::resource('transaksi', PenyewaController::class);
 
+Route::resource('penyedia', PenyewaController::class);
+

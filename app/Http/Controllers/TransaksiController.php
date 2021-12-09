@@ -62,13 +62,13 @@ class TransaksiController extends Controller
             'users_id' => 'required', 
             'nama_kost' => 'required',
             'bukti_transaksi' => 'required',
-            'jumlah' => 'required|integer|max:'. $updatePenyewa->jumlah,
+            'harga_sewa' => 'required|integer|max:'. $updatePenyewa->jumlah,
             'tanggal_transaksi' => 'required|date',
             'jenis_transaksi' => 'required',
             'status_transaksi' => 'required',
         ]);
 
-        if($status == 'dipinjam'){
+        if($status == 'lunas'){
             $updatePenyewa->jumlah -= $transaksi->jumlah;
         }
         $transaksi->save();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SuperAdminController extends Controller
@@ -12,6 +13,12 @@ class SuperAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $admin = User::where('role', 'admin')->get();
+        return view('SuperAdmin.index', compact('admin'));
+    }
+
+    public function home()
     {
         return view('SuperAdmin.home');
     }

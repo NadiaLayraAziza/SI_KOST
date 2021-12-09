@@ -25,9 +25,7 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', function () {
-    return view('SuperAdmin.home');
-});
+Route::get('/admin/home', [SuperAdminController::class, 'home']);
 
 Route::get('/home/user', function () {
     return view('User.home');

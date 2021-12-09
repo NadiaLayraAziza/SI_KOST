@@ -88,7 +88,7 @@
 
                     <!-- Add to Cart Form -->
                     <form class="cart clearfix" method="post">
-                        <button type="submit" name="addtocart" value="5" class="btn amado-btn">Pemesanan</button>
+                        <button type="submit" class="btn amado-btn">Pemesanan</button>
                     </form>
 
                 </div>

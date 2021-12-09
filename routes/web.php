@@ -40,3 +40,9 @@ Route::resource('penyedia', PenyewaController::class);
 Route::get('/home/detail-kost', function () {
     return view('User.detail');
 });
+
+Route::get('/register/user', function () {
+    return view('auth.register');
+});
+
+

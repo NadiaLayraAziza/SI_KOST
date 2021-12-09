@@ -15,10 +15,9 @@ class TambahKolomTabelTransaksi extends Migration
     {
         Schema::table('transaksi', function(Blueprint $table){
             $table->unsignedBigInteger('nama_kost')->nullable();
-            $table->foreign('id_penyedia')->references('nama_kost')->on('penyedia');
-            $table->date('tanggal_transaksi')->nullable();
-            $table->unsignedBigInteger('jumlah_transaksi')->nullable();
-            $table->foreign('id_penyewa')->references('harga_sewa')->on('penyewa');
+            $table->foreign('nama_kost')->references('id_penyedia')->on('penyedia');
+            $table->unsignedBigInteger('harga_sewa')->nullable();
+            $table->foreign('harga_sewa')->references('id_penyewa')->on('penyewa');
         }); 
     }
 
@@ -31,7 +30,6 @@ class TambahKolomTabelTransaksi extends Migration
     {
         Schema::table('transaksi', function(Blueprint $table){
             $table->dropColumn('username');
-            $table->dropColumn('tanggal_transaksi');
             $table->dropColumn('jumlah_transaksi');
         });  
     }

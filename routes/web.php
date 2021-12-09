@@ -45,4 +45,6 @@ Route::get('/register/user', function () {
     return view('auth.register');
 });
 
-
+Route::get('/booking/user', function () {
+    return view('User.booking');
+});

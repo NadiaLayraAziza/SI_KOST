@@ -20,7 +20,7 @@ class Transaksi extends Model
         'status transaksi'
     ];
 
-    public function anggota()
+    public function transaksi()
     {
         return $this->belongsTo(Transaksi::class);
     }

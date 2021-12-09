@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Report;
 
 class ReportCOntroller extends Controller
 {
@@ -13,7 +14,10 @@ class ReportCOntroller extends Controller
      */
     public function index()
     {
-        //
+        $report = Report::paginate(15);
+        $report = Report::join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
+                    ->get(['users.name']);
+        return view('report.index', ['report' => $report]);
     }
 
     /**
@@ -23,7 +27,7 @@ class ReportCOntroller extends Controller
      */
     public function create()
     {
-        //
+        return view('report.create');
     }
 
     /**
@@ -34,7 +38,18 @@ class ReportCOntroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //TODO : Implementasikan Proses Simpan Ke Database
+        $report = new Report();
+        $report->users_id = $request->get('users');
+        $users = $request->get('name');
+        $report->tanggal_report = now();
+        $report->keluhan = $request->get('keluhan');
+
+        $request->validate([
+            'report' => 'required',
+        ]);
+        
+        $report->save();
     }
 
     /**

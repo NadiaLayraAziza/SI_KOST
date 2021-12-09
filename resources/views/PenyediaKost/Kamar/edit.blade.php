@@ -4,12 +4,12 @@
 <div id="page-wrapper" >
     <div class="header">
         <h1 class="page-header">
-            Create Data Kamar Kost
+            Edit Data Kamar Kost
         </h1>
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
             <li><a href="#">Kamar</a></li>
-            <li class="active">Create</li>
+            <li class="active">Edit</li>
         </ol>
     </div>
 

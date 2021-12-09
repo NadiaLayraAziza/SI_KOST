@@ -27,20 +27,17 @@
         </div>
         <!-- Amado Nav -->
         @include('layouts-user.navbar')
-        <!-- Social Button -->
-        {{-- <div class="social-info d-flex justify-content-between">
-            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div> --}}
+
     </header>
     <!-- Header Area End -->
-
     <!-- Product Catagories Area Start -->
     <div class="products-catagories-area clearfix">
+        <div class="login-menu" style="padding: 20pt; padding-bottom: 50pt">
+            <ul class="pull-right">
+                <li><a class="btn btn-primary" href="{{ route('login') }}">Login</a></li>
+            </ul>
+        </div>
         <div class="amado-pro-catagory clearfix">
-
             <!-- Single Catagory -->
             <div class="single-products-catagory clearfix">
                 <a href="shop.html">

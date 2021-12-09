@@ -51,3 +51,7 @@ Route::get('/register/user', function () {
 Route::get('/booking/user', function () {
     return view('User.booking');
 });
+
+Route::get('/payment/user', function () {
+    return view('User.payment');
+});

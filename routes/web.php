@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PenyewaController;
+use App\Http\Controllers\KamarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::resource('penyewa', PenyewaController::class);
 Route::resource('transaksi', PenyewaController::class);
 
 Route::resource('penyedia', PenyewaController::class);
+
+Route::resource('kamar', KamarController::class);
 
 Route::get('/home/detail-kost', function () {
     return view('User.detail');

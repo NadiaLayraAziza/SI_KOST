@@ -37,3 +37,6 @@ Route::resource('transaksi', PenyewaController::class);
 
 Route::resource('penyedia', PenyewaController::class);
 
+Route::get('/home/detail-kost', function () {
+    return view('User.detail');
+});

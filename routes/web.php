@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\SuperAdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,8 @@ Route::get('/home', function () {
 Route::get('/home/user', function () {
     return view('User.home');
 });
+
+Route::resource('admin', SuperAdminController::class);
 
 Route::resource('penyewa', PenyewaController::class);
 

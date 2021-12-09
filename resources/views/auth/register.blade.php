@@ -39,18 +39,18 @@
         <div class="row justify-content">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">Register</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
+                                <label for="nama" class="col-md-4 col-form-label text-md-right">Nama Lengkap</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
 
-                                    @error('name')
+                                    @error('nama')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -58,14 +58,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="alamat" class="col-md-4 col-form-label text-md-right">{{ __('Alamat (Sesuai KTP)') }}</label>
+                                <label for="alamat" class="col-md-4 col-form-label text-md-right">Alamat (Sesuai KTP)</label>
 
                                 <div class="col-md-6">
-                                    <input id="alamat" type="tezt" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="alamat" type="text" class="form-control" name="alamat" required autocomplete="alamat">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -78,33 +78,31 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="no_hp" class="col-md-4 col-form-label text-md-right">{{ __('Nomor HP/WA') }}</label>
+                                <label for="no_hp" class="col-md-4 col-form-label text-md-right">Nomor HP/WA</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="text" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="no_hp" type="text" class="form-control" name="no_hp" required autocomplete="no_hp">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="form-group row" hidden>
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                                <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
 
                                 <div class="col-md-6">
-                                    <input id="Role" type="text" class="form-control" name="Role" required autocomplete="new-password">
+                                    <input id="role" type="text" class="form-control" name="role" required autocomplete="role">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </div>
                         </div>
                         </form>

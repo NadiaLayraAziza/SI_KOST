@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('User.home');
-});
+// Route::get('/', function () {
+//     return view('User.home');
+// })->name('home');
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin/home', [SuperAdminController::class, 'home']);
 
@@ -48,13 +48,10 @@ Route::get('/home/detail-kost', function () {
     return view('User.detail');
 });
 
-// Route::get('/register/user', function () {
-//     return view('auth.register');
-// });
-
 Route::get('/booking/user', function () {
     return view('User.booking');
 });
+// Route::get('/booking/{id}', [UserController::class, 'booking']);
 
 Route::get('/payment/user', function () {
     return view('User.payment');

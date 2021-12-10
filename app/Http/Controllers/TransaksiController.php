@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
+use App\Models\Kamar;
 use App\Models\Penyedia;
 use App\Models\Penyewa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -74,7 +76,7 @@ class TransaksiController extends Controller
         $transaksi->save();
         $updatePenyewa->save();
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('SuperAdmin.transaksi.index')->with('success', 'Transaksi Berhasil Dilakukan');
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi Berhasil Dilakukan');
     }
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\ReportPenyediaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,8 @@ Route::resource('transaksi', PenyewaController::class);
 Route::resource('penyedia', PenyewaController::class);
 
 Route::resource('kamar', KamarController::class);
+
+Route::resource('Report', ReportPenyediaController::class);
 
 Route::get('/home/detail-kost', function () {
     return view('User.detail');

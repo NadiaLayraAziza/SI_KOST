@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\SuperAdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,20 +18,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('User.home');
 });
 
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', function () {
-    return view('SuperAdmin.home');
-});
+Route::get('/admin/home', [SuperAdminController::class, 'home']);
 
 Route::get('/home/user', function () {
     return view('User.home');
 });
+
+Route::resource('admin', SuperAdminController::class);
 
 Route::resource('penyewa', PenyewaController::class);
 
@@ -44,9 +45,9 @@ Route::get('/home/detail-kost', function () {
     return view('User.detail');
 });
 
-Route::get('/register/user', function () {
-    return view('auth.register');
-});
+// Route::get('/register/user', function () {
+//     return view('auth.register');
+// });
 
 Route::get('/booking/user', function () {
     return view('User.booking');

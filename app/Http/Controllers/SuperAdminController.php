@@ -85,7 +85,8 @@ class SuperAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = User::where('id', $id)->first();
+        return view('SuperAdmin.edit', compact('admin'));
     }
 
     /**
@@ -97,7 +98,23 @@ class SuperAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'alamat' => 'required',
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required|email',
+        ]);
+        //TODO : Implementasikan Proses Simpan Ke Database
+        $admin = User::find($id);
+        $admin->no_hp = $request->get('no_hp');
+        $admin->alamat = $request->get('alamat');
+        $admin->nama = $request->get('nama');
+        $admin->email = $request->get('email');
+        $admin->role = 'admin';
+        $admin->save();
+
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('admin.index')->with('success', 'Super Admin Berhasil Diedit');
     }
 
     /**

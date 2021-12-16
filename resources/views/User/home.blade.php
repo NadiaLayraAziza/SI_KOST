@@ -1,7 +1,7 @@
 @extends('layouts-user.ViewUser')
 
 @section('home')
-    active-menu
+    active
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="mobile-nav">
         <!-- Navbar Brand -->
         <div class="amado-navbar-brand">
-            <a href="index.html"><img src="{{asset('assets-user/img/core-img/logo.png')}}" alt=""></a>
+            <a href="/"><img src="{{asset('assets-user/img/core-img/logo.png')}}" alt=""></a>
         </div>
         <!-- Navbar Toggler -->
         <div class="amado-navbar-toggler">
@@ -27,7 +27,7 @@
         </div>
         <!-- Logo -->
         <div class="logo">
-            <a href="index.html"><img src="{{asset('assets-user/img/core-img/logo-bejo.png')}}" alt=""></a>
+            <a href="/"><img src="{{asset('assets-user/img/core-img/logo-bejo.png')}}" alt=""></a>
         </div>
         <!-- Amado Nav -->
         @include('layouts-user.navbar')

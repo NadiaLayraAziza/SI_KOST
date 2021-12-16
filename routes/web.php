@@ -56,3 +56,11 @@ Route::get('/booking/user', function () {
 Route::get('/payment/user', function () {
     return view('User.payment');
 });
+
+Route::get('/report/user', function () {
+    return view('User.report.create');
+});
+
+Route::get('/profile/user', function () {
+    return view('User.profile');
+});

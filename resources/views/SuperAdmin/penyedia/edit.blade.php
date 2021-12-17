@@ -1,5 +1,7 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_penyedia', 'active')
+@section('menu_penyedia')
+    active-menu
+@endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">

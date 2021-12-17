@@ -18,13 +18,28 @@ class Penyewa extends Model
         'jumlah_waktu',
         'tgl_mulai',
         'kost',
-        'id_kamar',
+        'id_kmr',
         'harga_sewa'
     ];
 
     public function penyewa()
     {
         return $this->belongsTo(Penyewa::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function penyedia()
+    {
+        return $this->belongsTo(Penyedia::class, 'kost');
+    }
+
+    public function kamar()
+    {
+        return $this->belongsTo(Kamar::class, 'id_kmr');
     }
 
 }

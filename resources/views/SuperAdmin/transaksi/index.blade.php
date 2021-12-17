@@ -1,5 +1,7 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_transaksi', 'active')
+@section('menu_transaksi')
+    active-menu
+@endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
@@ -59,6 +61,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

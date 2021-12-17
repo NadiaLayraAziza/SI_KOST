@@ -48,9 +48,17 @@
                     <div id="product_details" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a class="gallery_img" href="{{asset('assets-user/img/product-img/pro-big-1.jpg')}}">
-                                    <img style="border-radius: 200px; -moz-border-radius: 200px;" src="{{asset('assets-user/img/product-img/pro-big-1.jpg')}}" alt="First slide">
+                                <a class="gallery_img" href="https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png">
+                                    <img style="border-radius: 200px; -moz-border-radius: 200px;" src="https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png">
                                 </a>
+                            </div>
+                            <br>
+                            <div class="col-12 col-lg-7" style="padding-left: 60pt">
+                                <a class="btn btn-info w-100" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">{{ __('Log Out') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -61,15 +69,15 @@
                     <!-- Product Meta Data -->
                     <div class="product-meta-data">
                         <div class="line"></div>
-                        <h3>Nama User</h3>
+                        <h3>{{Auth::user()->nama}}</h3>
                         <div class="cart-table-area">
-                            <div class="col-12 col-lg-8">
+                            <div class="col-12 col-lg-10">
                                 <div class="cart-summary" style="margin-top: 20px">
                                     <ul class="summary-table">
-                                        <li><span>Nama:</span> <span>Muhammad</span></li>
-                                        <li><span>Alamat:</span> <span>Pasuruan</span></li>
-                                        <li><span>No.Telepon:</span> <span>08123456789</span></li>
-                                        <li><span>Email:</span> <span>user@gmail.com</span></li>
+                                        <li><span>Nama:</span> <span>{{Auth::user()->nama}}</span></li>
+                                        <li><span>Alamat:</span> <span>{{Auth::user()->alamat}}</span></li>
+                                        <li><span>No.Telepon:</span> <span>{{Auth::user()->no_hp}}</span></li>
+                                        <li><span>Email:</span> <span>{{Auth::user()->email}}</span></li>
                                     </ul>
                                     <div class="cart-btn mt-100">
                                         <a href="/daftarkos/user" class="btn amado-btn w-100">Daftarkan Kost</a>

@@ -1,4 +1,4 @@
-<footer class="footer_area clearfix" style="padding: 40px">
+<footer class="footer_area clearfix" style="padding: 20px">
     <div class="container">
         <div class="row align-items-center">
             <!-- Single Widget Area -->
@@ -6,9 +6,13 @@
                 <div class="single_widget_area">
                     <!-- Logo -->
                     <div class="footer-logo mr-50">
-                        <a href="index.html"><img src="img/core-img/logo2.png" alt=""></a>
+                        <a href="/"><img src="{{asset('assets-user/img/core-img/logo-bejo.png')}}" alt="" style="width: 40pt"></a>
                     </div>
-
+                    <!-- Copywrite Text -->
+                    <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->& Re-distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a>
+                    </p>
                 </div>
             </div>
             <!-- Single Widget Area -->
@@ -27,16 +31,16 @@
                                         <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                     </div> --}}
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html"><i class="fa fa-facebook" aria-hidden="true"></i>  Bejo Kost</a>
+                                        <a class="nav-link" href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i>  Bejo Kost</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="shop.html"><i class="fa fa-instagram" aria-hidden="true"></i>  @Bejo_kost</a>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i>  @Bejo_kost</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="product-details.html"><i class="fa fa-twitter" aria-hidden="true"></i>  BejoKost</a>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i>  BejoKost</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="cart.html"><i class="fa fa-email" aria-hidden="true"></i>  bejokos@gmail.com</a>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href = "mailto: 1941720061@student.polinema.ac.id" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i>  bejokos@gmail.com</a>
                                     </li>
                                 </ul>
                             </div>

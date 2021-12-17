@@ -17,7 +17,7 @@ class CreateReportTable extends Migration
             $table->id('id_report');
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users');
-            $table->date('tanggal_report');
+            $table->date('tanggal_report')->nullable();
             $table->string('keluhan');
             $table->timestamps();
         });

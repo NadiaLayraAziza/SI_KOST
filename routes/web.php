@@ -64,3 +64,7 @@ Route::get('/report/user', function () {
 Route::get('/profile/user', function () {
     return view('User.profile');
 });
+
+Route::get('/daftarkos/user', function () {
+    return view('User.DaftarKost');
+});

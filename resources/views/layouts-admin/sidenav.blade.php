@@ -22,15 +22,15 @@
                 <a class="@yield('report')" href="/admin/report"><i class="fa fa-edit"></i> Report </a>
             </li>
             {{-- admin --}}
-            {{-- <li>
+            <li>
                 <a class="active-menu @yield('menu_kamar')" href={{ route('kamar.index') }}><i class="fa fa-qrcode"></i> Home</a>
             </li>
             <li>
                 <a  href="table.html"><i class="fa fa-table"></i> Penyewa Kost</a>
             </li>
             <li>
-                <a class="active-menu" href="form.html"><i class="fa fa-edit"></i> Report </a>
-            </li> --}}
+                <a class="active-menu @yield('menu_report_penyedia')" href={{ route('Report.index') }}><i class="fa fa-qrcode"></i> Report</a>
+            </li>
 
         </ul>
 

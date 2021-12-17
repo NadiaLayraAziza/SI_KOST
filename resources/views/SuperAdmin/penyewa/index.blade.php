@@ -1,5 +1,9 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_penyewa', 'active')
+
+@section('menu_penyewa')
+    active-menu
+@endsection
+
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
@@ -7,7 +11,7 @@
             Data Penyewa Kost
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Penyewa</a></li>
+            <li><a href={{ route('penyewa.index') }}>Penyewa</a></li>
             <li class="active">Index</li>
         </ol>
     </div>
@@ -56,6 +60,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

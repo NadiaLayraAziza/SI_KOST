@@ -1,45 +1,11 @@
 @extends('layouts-user.ViewUser')
 
 @section('content')
-<div class="main-content-wrapper d-flex clearfix">
-    <!-- Mobile Nav (max width 767px)-->
-    <div class="mobile-nav">
-        <!-- Navbar Brand -->
-        <div class="amado-navbar-brand">
-            <a href="index.html"><img src="{{asset('assets-user/img/core-img/logo.png')}}" alt=""></a>
-        </div>
-        <!-- Navbar Toggler -->
-        <div class="amado-navbar-toggler">
-            <span></span><span></span><span></span>
-        </div>
-    </div>
-
-    <!-- Header Area Start -->
-    <header class="header-area clearfix">
-        <!-- Close Icon -->
-        <div class="nav-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index.html"><img src="{{asset('assets-user/img/core-img/logo-bejo.png')}}" alt=""></a>
-        </div>
-        <!-- Amado Nav -->
-        @include('layouts-user.navbar')
-        <!-- Social Button -->
-        {{-- <div class="social-info d-flex justify-content-between">
-            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div> --}}
-    </header>
-    <!-- Header Area End -->
-    <div class="container" style="padding-top: 150pt;padding-bottom: 150pt">
-        <div class="row justify-content">
+    <div class="container">
+        <div class="row justify-content-center" style="padding-top: 80pt; padding-bottom: 80pt;">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Register</div>
+                    <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" id="myForm" enctype="multipart/form-data">
@@ -85,23 +51,28 @@
                                     <input id="password" type="password" class="form-control" name="password" required autocomplete="password">
                                 </div>
                             </div>
+
                             <div class="form-group row" hidden>
                                 <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
+
                                 <div class="col-md-6">
                                     <input id="role" type="text" class="form-control" name="role" required autocomplete="role" value="penyewa">
                                 </div>
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row mb-0" style="padding-bottom: 25pt">
+                        {{-- <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">Register</button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
                             </div>
                         </div> --}}
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group mb-0">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
                                 </div>
                             </div>
                         </div>

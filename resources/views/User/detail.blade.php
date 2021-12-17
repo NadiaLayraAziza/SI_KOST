@@ -1,5 +1,7 @@
 @extends('layouts-user.ViewUser')
-
+@section('home')
+    active
+@endsection
 @section('content')
 <div class="main-content-wrapper d-flex clearfix">
     <!-- Mobile Nav (max width 767px)-->
@@ -39,8 +41,8 @@
                     </nav>
                 </div>
             </div>
-
         </div>
+
         <div class="row">
             <div class="col-12 col-lg-7">
                 <div class="single_product_thumb">
@@ -90,18 +92,12 @@
                     <form class="cart clearfix" method="post">
                         <button type="submit" class="btn amado-btn">Pemesanan</button>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Product Details Area End -->
-</div>
-    </div>
-    <!-- Product Details Area End -->
-    <!-- Header Area End -->
-</div>
 
 <body>
     <!-- Search Wrapper Area Start -->
@@ -157,5 +153,4 @@
     <!-- ##### Main Content Wrapper End ##### -->
 
 </body>
-
-</html>
+@endsection

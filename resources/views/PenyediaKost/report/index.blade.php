@@ -15,10 +15,14 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
+                <!-- Advanced Tables -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        History Report
+                       {{-- Advanced Tables --}}
+                       <div class="col-md-40 col-sm-12 text-right">
+                        <a class="btn btn-success" href="{{ route('Report.create') }}"> Create Data </a>
                     </div>
+                    <br>
                     <div class="panel-body">
                         <div class="alert alert-warning">
                             <strong>Warning!</strong> Best check yo self, you're not looking too good.

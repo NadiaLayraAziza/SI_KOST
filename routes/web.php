@@ -3,6 +3,7 @@
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\ReportPenyediaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('User.home');
-});
+// Route::get('/', function () {
+//     return view('User.home');
+// })->name('home');
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin/home', [SuperAdminController::class, 'home']);
 
@@ -41,18 +42,25 @@ Route::resource('penyedia', PenyewaController::class);
 
 Route::resource('kamar', KamarController::class);
 
+Route::resource('Report', ReportPenyediaController::class);
+
 Route::get('/home/detail-kost', function () {
     return view('User.detail');
 });
 
-// Route::get('/register/user', function () {
-//     return view('auth.register');
-// });
-
 Route::get('/booking/user', function () {
     return view('User.booking');
 });
+// Route::get('/booking/{id}', [UserController::class, 'booking']);
 
 Route::get('/payment/user', function () {
     return view('User.payment');
+});
+
+Route::get('/report/user', function () {
+    return view('User.report.create');
+});
+
+Route::get('/profile/user', function () {
+    return view('User.profile');
 });

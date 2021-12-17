@@ -1,9 +1,9 @@
 <nav class="amado-nav">
     <ul>
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a href="/booking/user">Booking</a></li>
-        <li><a href="/payment/user">Payment</a></li>
-        <li><a href="cart.html">Report</a></li>
-        <li><a href="cart.html">Profile</a></li>
+        <li class="@yield('home')"><a href="/">Home</a></li>
+        <li class="@yield('booking')"><a href="/booking/user">Booking</a></li>
+        <li class="@yield('payment')"><a href="/payment/user">Payment</a></li>
+        <li class="@yield('report')"><a href="/report/user">Report</a></li>
+        <li class="@yield('profile')"><a href="/profile/user">Profile</a></li>
     </ul>
 </nav>

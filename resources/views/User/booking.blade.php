@@ -1,5 +1,7 @@
 @extends('layouts-user.ViewUser')
-
+@section('booking')
+    active
+@endsection
 @section('content')
 <div class="main-content-wrapper d-flex clearfix">
     <!-- Mobile Nav (max width 767px)-->
@@ -24,15 +26,10 @@
         <div class="logo">
             <a href="index.html"><img src="{{asset('assets-user/img/core-img/logo-bejo.png')}}" alt=""></a>
         </div>
+
         <!-- Amado Nav -->
-        <nav class="amado-nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="/booking/user">Booking</a></li>
-                <li><a href="/payment/user">Payment</a></li>
-                <li><a href="cart.html">Report</a></li>
-            </ul>
-        </nav>
+        @include('layouts-user.navbar')
+
     </header>
     <!-- Header Area End -->
     <div class="container" style="padding-top: 68pt;padding-bottom: 68pt">

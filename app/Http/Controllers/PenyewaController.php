@@ -18,6 +18,7 @@ class PenyewaController extends Controller
      */
     public function index()
     {
+        $penyewa = Penyewa::with('user');
         return view('SuperAdmin.penyewa.index', compact('penyewa'));
     }
 

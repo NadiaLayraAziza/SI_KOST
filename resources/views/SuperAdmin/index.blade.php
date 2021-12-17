@@ -47,17 +47,17 @@
                                                 <td>{{ $item->email }}</td>
                                                 <td>
                                                     <form action="#">
-                                                        <a href="#"
+                                                        <a href="/admin/{{$item->id}}/edit"
                                                             class="btn btn-warning">
                                                             <i class="icon-copy fa fa-pencil-square-o"
-                                                                aria-hidden="true">Edit</i>
+                                                                aria-hidden="true"> Edit </i>
                                                         </a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button
                                                             onclick="return confirm('Anda yakin ingin meghapus data ini ?')"
                                                             type="submit" class="btn btn-danger">
-                                                            <i class="icon-copy fa fa-eraser" aria-hidden="true">Delete</i>
+                                                            <i class="icon-copy fa fa-eraser" aria-hidden="true"> Delete </i>
                                                     </form>
                                                 </td>
                                             </tr>

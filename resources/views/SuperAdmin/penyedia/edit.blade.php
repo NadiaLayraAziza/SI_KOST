@@ -36,19 +36,19 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="id_user">Nama Lengkap</label>
-                                        <input class="form-control" type="text" name="id_user" id="id_user" value="{{ $penyedia->users->nama }}" aria-describedby="id_user" placeholder="">
+                                        <input class="form-control" type="text" name="nama" id="id_user" value="{{ $penyedia->users->nama }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="id_user">Alamat Sesuai KTP</label>
-                                        <input class="form-control" type="text" name="id_user" id="id_user" value="{{ $penyedia->users->alamat }}" aria-describedby="id_user" placeholder="">
+                                        <input class="form-control" type="text" name="alamat" id="id_user" value="{{ $penyedia->users->alamat }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="id_user">Email</label>
-                                        <input class="form-control" type="email" name="id_user" id="id_user" value="{{ $penyedia->users->email }}" aria-describedby="id_user" placeholder="">
+                                        <input class="form-control" type="email" name="email" id="id_user" value="{{ $penyedia->users->email }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="id_user">No Telepon</label>
-                                        <input class="form-control" type="text" name="id_user" id="id_user" value="{{ $penyedia->users->no_hp }}" aria-describedby="id_user" placeholder="">
+                                        <input class="form-control" type="text" name="no_hp" id="id_user" value="{{ $penyedia->users->no_hp }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

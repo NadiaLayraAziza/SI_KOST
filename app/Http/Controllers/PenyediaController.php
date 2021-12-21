@@ -95,7 +95,7 @@ class PenyediaController extends Controller
      */
     public function edit($id_penyedia)
     {
-        $penyedia = Penyedia::with('users','penyedia','kamar')->find($id_penyedia);
+        $penyedia = Penyedia::with('users')->find($id_penyedia);
         $users = User::all();
         return view('SuperAdmin.penyedia.edit', compact('penyedia', 'users'));
     }
@@ -111,20 +111,19 @@ class PenyediaController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_user' => 'required',
             'nama_kost' => 'required',
             'alamat_kost' => 'required',
+            'alamat' => 'required',
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required|email',
             ]);
 
-            $penyedia = Penyedia::with('user')->where('id_penyedia', $id_penyedia)->first();
+            $penyedia = Penyedia::with('users')->where('id_penyedia', $id_penyedia)->first();
 
             if ($request->file('foto_kost') == ''){
                 $penyedia->nama_kost = $request->get('nama_kost');
                 $penyedia->alamat_kost = $request->get('alamat_kost');
-
-                $user = User::find($request->get('id_user'));
-                //fungsi eloquent untuk menambah data dengan relasi belongsTo
-                $penyedia->user()->associate($user);
                 $penyedia->save();
             } else{
                 if ($penyedia->foto_kost && file_exists(storage_path('app/public/' .$penyedia->foto_kost)))
@@ -136,10 +135,6 @@ class PenyediaController extends Controller
 
                 $penyedia->nama_kost = $request->get('nama_kost');
                 $penyedia->alamat_kost = $request->get('alamat_kost');
-
-                $user = User::find($request->get('id_user'));
-                //fungsi eloquent untuk menambah data dengan relasi belongsTo
-                $penyedia->user()->associate($user);
                 $penyedia->save();
             }
 

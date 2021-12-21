@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Penyedia;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenyediaController extends Controller
@@ -27,7 +29,7 @@ class PenyediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('SuperAdmin.penyedia.create');
     }
 
     /**
@@ -38,7 +40,40 @@ class PenyediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kost' => 'required',
+            'alamat_kost' => 'required',
+            'foto_kost'=> 'required|file|image|mimes:jpeg,png,jpg',
+            'alamat' => 'required',
+            'password' => 'required', 'string', 'min:8',
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        if ($request->file('foto_kost')) {
+            $image_name = $request->file('foto_kost')->store('images', 'public');
+        }
+
+        $user = new User();
+        $user->password = Hash::make($request->get('password'));
+        $user->nama = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->no_hp = $request->get('no_hp');
+        $user->alamat = $request->get('alamat');
+        $user->role = 'penyedia';
+        $user->save();
+        
+        $penyedia = new Penyedia;
+        $penyedia->nama_kost = $request->get('nama_kost');
+        $penyedia->alamat_kost = $request->get('alamat_kost');
+        $penyedia->foto_kost = $image_name;
+        $penyedia->users()->associate($user);
+        $penyedia->save();
+
+        return redirect()->to('/penyedia')
+                ->with('success', 'penyedia Berhasil ditambahkan');
+
     }
 
     /**
@@ -94,7 +129,7 @@ class PenyediaController extends Controller
             } else{
                 if ($penyedia->foto_kost && file_exists(storage_path('app/public/' .$penyedia->foto_kost)))
                 {
-                    \Storage::delete(['public/' . $penyedia->foto_kost]);
+                    Storage::delete(['public/' . $penyedia->foto_kost]);
                 }
                 $image_name = $request->file('foto_kost')->store('images', 'public');
                 $penyedia->foto_kost = $image_name;

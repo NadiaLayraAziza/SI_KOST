@@ -41,14 +41,14 @@
                                     <tbody>
                                         @foreach ($penyedia as $item)
                                             <tr>
-                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->id_penyedia }}</td>
                                                 <td>{{ $item->users->nama }}</td>
                                                 <td>{{ $item->nama_kost }}</td>
                                                 <td>{{ $item->alamat_kost }}</td>
                                                 <td><img src="{{ asset('storage/' . $item->foto_kost) }}" width="100px;" height="150px;" alt=""></td>
                                                 <td>
                                                     <form action="#">
-                                                        <a href="/penyedia/{{$item->id}}/edit"
+                                                        <a href="/penyedia/{{$item->id_penyedia}}/edit"
                                                             class="btn btn-warning">
                                                             <i class="icon-copy fa fa-pencil-square-o"
                                                                 aria-hidden="true"> Edit </i>

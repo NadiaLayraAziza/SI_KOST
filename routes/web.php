@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\PenyediaController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ReportPenyediaController;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,7 @@ Route::resource('penyewa', PenyewaController::class);
 
 Route::resource('transaksi', PenyewaController::class);
 
-Route::resource('penyedia', PenyewaController::class);
+Route::resource('penyedia', PenyediaController::class);
 
 Route::resource('kamar', KamarController::class);
 

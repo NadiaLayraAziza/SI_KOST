@@ -9,7 +9,7 @@
                 <a class="@yield('superadmin')"  href="/admin"><i class="fa fa-desktop"></i> Super Admin</a>
             </li>
             <li>
-                <a class="@yield('penyediakost')"  href="/admin/penyedia"><i class="fa fa-bar-chart-o"></i> Penyedia Kost</a>
+                <a class="@yield('penyediakost')"  href="/penyedia"><i class="fa fa-bar-chart-o"></i> Penyedia Kost</a>
             </li>
             <li>
                 <a class="@yield('menu_penyewa')" href={{ route('penyewa.index') }}><i class="fa fa-qrcode"></i> Penyewa Kost</a>

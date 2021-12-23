@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class ReportCOntroller extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,13 @@ class ReportCOntroller extends Controller
      */
     public function index()
     {
-        $report = Report::paginate(15);
-        $report = Report::join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
-                    ->get(['users.name']);
-        return view('report.index', ['report' => $report]);
+        // $report = Report::paginate(15);
+        // $report = Report::join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
+        //             ->get(['users.name']);
+        // return view('report.index', ['report' => $report]);
+
+        $report = Report::all();
+        return view('User.report.index', compact('report'));
     }
 
     /**
@@ -29,7 +33,7 @@ class ReportCOntroller extends Controller
      */
     public function create()
     {
-        return view('report.create');
+        return view('User.report.create');
     }
 
     /**
@@ -52,8 +56,6 @@ class ReportCOntroller extends Controller
 
         // $report->save();
         $request->validate([
-            'users_id' => 'required',
-            'tanggal_report' => 'required',
             'keluhan' => 'required',
         ]);
 
@@ -66,8 +68,10 @@ class ReportCOntroller extends Controller
         $report->users()->associate($user);
         $report->save();
 
-        return redirect()->to('/report/user')
-                ->with('success', 'report telah dikirim');
+        // return redirect()->to('/report/user')
+        //         ->with('success', 'report telah dikirim');
+        Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
+        return redirect()->route('ReportUser.index');
     }
 
     /**

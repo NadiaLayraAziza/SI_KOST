@@ -4,6 +4,7 @@ use App\Http\Controllers\HomePenyewaController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PenyediaController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ReportPenyediaController;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/report/user', function () {
         return view('User.report.create');
     });
+
+    Route::resource('ReportUser', ReportController::class);
 
     Route::get('/profile/user', function () {
         return view('User.profile');

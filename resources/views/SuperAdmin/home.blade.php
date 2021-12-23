@@ -25,7 +25,7 @@
 
                         </div>
                         <div class="panel-right">
-                            <h3>{{($SuperAdmin->where('role', 'Super Admin')->count())}}</h3>
+                            <h3>{{($SuperAdmin->where('role', 'admin')->count())}}</h3>
                             <strong> Super Admin </strong>
                         </div>
                     </div>

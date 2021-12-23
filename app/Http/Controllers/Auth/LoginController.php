@@ -40,7 +40,7 @@ class LoginController extends Controller
             case 'Penyedia':
                 return '/profile/user';
                 break;
-            case 'Super Admin':
+            case 'admin':
                 return '/admin/home';
             break;
             default:

@@ -21,10 +21,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        {{-- <div class="panel-heading">
                             <a class="btn btn-success" href="/penyedia/create"> Create Data </a>
                             <br>
-                        </div>
+                        </div> --}}
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">

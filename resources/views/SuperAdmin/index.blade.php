@@ -46,17 +46,15 @@
                                                 <td>{{ $item->no_hp }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>
-                                                    <form action="#">
-                                                        <a href="/admin/{{$item->id}}/edit"
-                                                            class="btn btn-warning">
-                                                            <i class="icon-copy fa fa-pencil-square-o"
-                                                                aria-hidden="true"> Edit </i>
+                                                    {{-- <form action="#"> --}}
+                                                    <form action="{{ route('admin.destroy', $item->id) }}" method="POST">
+                                                        <a class="btn btn-warning" href="/admin/{{$item->id}}/edit">
+                                                            <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"> Edit </i>
                                                         </a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button
-                                                            onclick="return confirm('Anda yakin ingin meghapus data ini ?')"
-                                                            type="submit" class="btn btn-danger">
+                                                            class="btn btn-danger" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
                                                             <i class="icon-copy fa fa-eraser" aria-hidden="true"> Delete </i>
                                                     </form>
                                                 </td>

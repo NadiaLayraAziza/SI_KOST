@@ -79,9 +79,16 @@
                                         <li><span>No.Telepon:</span> <span>{{Auth::user()->no_hp}}</span></li>
                                         <li><span>Email:</span> <span>{{Auth::user()->email}}</span></li>
                                     </ul>
+                                    @if(Auth::user()->role == 'Penyewa')
                                     <div class="cart-btn mt-100">
                                         <a href="/daftarkos/user" class="btn amado-btn w-100">Daftarkan Kost</a>
                                     </div>
+                                    @endif
+                                    @if(Auth::user()->role == 'Penyedia')
+                                    <div class="cart-btn mt-100">
+                                        <a href="/penyedia/home" class="btn amado-btn w-100">Kelola Kost</a>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

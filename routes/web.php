@@ -7,6 +7,7 @@ use App\Http\Controllers\PenyediaController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ReportPenyediaController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,7 @@ Route::resource('admin', SuperAdminController::class);
 
 Route::resource('penyewa', PenyewaController::class);
 
-Route::resource('transaksi', PenyewaController::class);
+Route::resource('transaksi', TransaksiController::class);
 
 Route::resource('penyedia', PenyediaController::class);
 

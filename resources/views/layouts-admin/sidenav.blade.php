@@ -1,7 +1,7 @@
 <nav class="navbar-default navbar-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
-            @if(Auth::user()->role == 'Super Admin')
+            @if(Auth::user()->role == 'admin')
             <li>
                 <a class="@yield('beranda')"  href="/admin/home"><i class="fa fa-dashboard"></i> Beranda</a>
             </li>
@@ -16,7 +16,7 @@
             </li>
 
             <li>
-                <a class="@yield('transaksi')"  href="/admin/transaksi"><i class="fa fa-table"></i> Transaksi</a>
+                <a class="@yield('transaksi')"  href={{ route('transaksi.index') }}><i class="fa fa-table"></i> Transaksi</a>
             </li>
             <li>
                 <a class="@yield('report')" href="/admin/report"><i class="fa fa-edit"></i> Report </a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penyedia;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -63,7 +64,7 @@ class PenyediaController extends Controller
         $user->alamat = $request->get('alamat');
         $user->role = 'penyedia';
         $user->save();
-        
+
         $penyedia = new Penyedia;
         $penyedia->nama_kost = $request->get('nama_kost');
         $penyedia->alamat_kost = $request->get('alamat_kost');
@@ -153,4 +154,38 @@ class PenyediaController extends Controller
     {
         //
     }
+
+    public function simpan(Request $request)
+    {
+        $request->validate([
+            // 'id_user' => Auth::user()->id,
+            'nama_kost' => 'required',
+            'alamat_kost' => 'required',
+            'foto_kost'=> 'required|file|image|mimes:jpeg,png,jpg',
+        ]);
+
+        if ($request->file('foto_kost')) {
+            $image_name = $request->file('foto_kost')->store('images', 'public');
+        }
+
+        $user = User::find(Auth::user()->id);
+
+        $penyedia = new Penyedia;
+        $penyedia->id_user = Auth::user()->id;
+        $penyedia->nama_kost = $request->get('nama_kost');
+        $penyedia->alamat_kost = $request->get('alamat_kost');
+        $penyedia->foto_kost = $image_name;
+        $penyedia->users()->associate($user);
+        $penyedia->save();
+
+        $user = User::where('id',$penyedia->id_user)
+        ->update([
+            'role' => "Penyedia"
+        ]);
+
+        return redirect()->to('/penyedia/home')
+                ->with('success', 'Kost telah berhasil didaftarkan');
+
+    }
+
 }

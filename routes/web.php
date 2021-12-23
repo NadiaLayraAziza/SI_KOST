@@ -70,4 +70,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/daftarkos/user', function () {
         return view('User.DaftarKost');
     });
+
+    Route::post('/daftarkos/simpan', [PenyediaController::class, 'simpan']);
+
+    Route::get('/penyedia/home', function () {
+        return view('PenyediaKost.home');
+    });
 });

@@ -39,26 +39,34 @@
                     <div class="card-header">{{ __('Formulir Daftarkan Kost') }}</div>
 
                     <div class="card-body">
-                        <form method="POST">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method="POST" action="/daftarkos/simpan" id="myForm" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Kost') }}</label>
-
+                                <label for="nama_kost" class="col-md-4 col-form-label text-md-right">{{ __('Nama Kost') }}</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input id="nama_kost" type="text" class="form-control" name="nama_kost" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Alamat Kost') }}</label>
-
+                                <label for="alamat_kost" class="col-md-4 col-form-label text-md-right">{{ __('Alamat Kost') }}</label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="alamat_kost" type="text" class="form-control" name="alamat_kost" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="foto_kost" class="col-md-4 col-form-label text-md-right">Foto Kost</label>
+                                <div class="col-md-6">
+                                    <input id="foto_kost" class="uploads form-control" type="file" name="foto_kost">
                                 </div>
                             </div>
                             <div class="form-group row mb-0">

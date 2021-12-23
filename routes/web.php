@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomePenyewaController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PenyediaController;
@@ -25,13 +26,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomePenyewaController::class, 'index'])->name('HomeUser');
+Route::get('/', [HomePenyewaController::class, 'index'])->name('HomeUser');
+
+Route::get('/ShowKost/{id_penyedia}', [HomePenyewaController::class, 'ShowKost'])->name('DetailKost');
 
 Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
-
-Route::get('/home/user', function () {
-    return view('User.home');
-});
 
 Route::resource('admin', SuperAdminController::class);
 
@@ -44,10 +43,6 @@ Route::resource('penyedia', PenyediaController::class);
 Route::resource('kamar', KamarController::class);
 
 Route::resource('Report', ReportPenyediaController::class);
-
-Route::get('/home/detail-kost', function () {
-    return view('User.detail');
-});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/booking/user', function () {

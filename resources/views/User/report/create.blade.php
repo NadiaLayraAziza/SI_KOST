@@ -40,11 +40,30 @@
                             <h2>Keluhan</h2>
                         </div>
 
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Leave a comment here"></textarea>
+                        <form action="{{ route('rpt.store') }}" method="post" id="myForm" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="keluhan" class="col-sm-12 col-md-2 col-form-label text-white">Keluhan</label>
+                                <div class="col-sm-12 col-md-10">
+                                    <input class="form-control" type="text" name="keluhan" id="keluhan" aria-describedby="keluhan" placeholder="">
                                 </div>
+                            </div>
+                            <div class="form-group row" hidden>
+                                <label for="tanggal_report" class="col-md-4 col-form-label text-md-right">Tanggal</label>
+
+                                <div class="col-md-6">
+                                    <input id="tanggal_report" type="date" class="form-control" name="role" required autocomplete="tanggal_report" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}">
+                                </div>
+                            </div>
+                            {{-- <div class="form-group row">
+                                <div class="col-12 mb-3" for="keluhan">
+                                    <textarea name="keluhan" class="form-control w-100" id="keluhan" cols="30" rows="10" placeholder="Leave a comment here" required></textarea>
+                                </div>
+                                {{-- <div class="col-12 mb-3">
+                                    <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Leave a comment here"></textarea>
+                                </div> --}}
+                            {{-- </div> --}}
+                            <div class="form-group row">
                                 <div class="col-12 mb-3">
                                     <button type="submit" class="btn amado-btn w-100">Submit</button>
                                 </div>

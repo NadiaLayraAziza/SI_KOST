@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ReportCOntroller extends Controller
 {
@@ -39,17 +41,33 @@ class ReportCOntroller extends Controller
     public function store(Request $request)
     {
         //TODO : Implementasikan Proses Simpan Ke Database
-        $report = new Report();
-        $report->users_id = $request->get('users');
-        $users = $request->get('name');
+        // $report = new Report();
+        // $report->users_id = $request->get('users');
+        // $report->tanggal_report = now();
+        // $report->keluhan = $request->get('keluhan');
+
+        // $request->validate([
+        //     'report' => 'required',
+        // ]);
+
+        // $report->save();
+        $request->validate([
+            'users_id' => 'required',
+            'tanggal_report' => 'required',
+            'keluhan' => 'required',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        $report = new Report;
+        $report->users_id = Auth::user()->id;
         $report->tanggal_report = now();
         $report->keluhan = $request->get('keluhan');
-
-        $request->validate([
-            'report' => 'required',
-        ]);
-        
+        $report->users()->associate($user);
         $report->save();
+
+        return redirect()->to('/report/user')
+                ->with('success', 'report telah dikirim');
     }
 
     /**
@@ -96,4 +114,25 @@ class ReportCOntroller extends Controller
     {
         //
     }
+    // public function simpanUser(Request $request)
+    // {
+    //     $request->validate([
+    //         'users_id' => 'required',
+    //         'tanggal_report' => 'required',
+    //         'keluhan' => 'required',
+    //     ]);
+
+    //     $user = User::find(Auth::user()->id);
+
+    //     $report = new Report;
+    //     $report->users_id = Auth::user()->id;
+    //     $report->tanggal_report = now();
+    //     $report->keluhan = $request->get('keluhan');
+    //     $report->users()->associate($user);
+    //     $report->save();
+
+    //     return redirect()->to('/report/user')
+    //             ->with('success', 'report telah dikirim');
+
+    // }
 }

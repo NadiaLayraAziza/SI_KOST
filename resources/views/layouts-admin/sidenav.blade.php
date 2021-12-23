@@ -19,7 +19,7 @@
                 <a class="@yield('transaksi')"  href={{ route('transaksi.index') }}><i class="fa fa-table"></i> Transaksi</a>
             </li>
             <li>
-                <a class="@yield('report')" href="/admin/report"><i class="fa fa-edit"></i> Report </a>
+                <a class="@yield('report')" href="/report/admin"><i class="fa fa-edit"></i> Report </a>
             </li>
             @endif
             {{-- admin --}}

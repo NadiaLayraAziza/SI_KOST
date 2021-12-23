@@ -28,6 +28,7 @@
                                         <tr>
                                             <th>ID Report</th>
                                             <th>Nama</th>
+                                            <th>Role</th>
                                             <th>Tanggal Report</th>
                                             <th>Keluhan</th>
                                         </tr>
@@ -37,6 +38,7 @@
                                             <tr>
                                                 <td>{{ $item->id_report }}</td>
                                                 <td>{{ $item->users->nama }}</td>
+                                                <td>{{ $item->users->role }}</td>
                                                 <td>{{ $item->tanggal_report }}</td>
                                                 <td>{{ $item->keluhan }}</td>
                                             </tr>

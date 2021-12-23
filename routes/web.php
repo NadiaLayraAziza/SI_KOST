@@ -80,3 +80,5 @@ Route::group(['middleware' => 'auth'], function () {
         return view('PenyediaKost.home');
     });
 });
+
+Route::get('/report/admin', [ReportController::class, 'Admin']);

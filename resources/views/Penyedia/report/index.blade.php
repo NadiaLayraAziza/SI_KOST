@@ -1,5 +1,7 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_report_penyedia', 'active')
+@section('menu_report_penyedia')
+    active-menu
+@endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
@@ -23,11 +25,28 @@
                         <a class="btn btn-success" href="{{ route('Report.create') }}"> Create Data </a>
                     </div>
                     <br>
-                    <div class="panel-body">
-                        <div class="alert alert-warning">
-                            <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                        <div class="cart-table clearfix">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Keluhan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($report as $re => $data)
+                                    <tr>
+                                        <td class="cart_product_desc">
+                                            <h5>{{ $data->tanggal_report }}</h5>
+                                        </td>
+                                        <td class="price">
+                                            <span>{{ $data->keluhan }}</span>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->

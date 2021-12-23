@@ -7,7 +7,7 @@
     <div id="page-wrapper">
         <div class="header">
             <h1 class="page-header">
-                Welcome John Doe
+                {{Auth::user()->nama}}
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
@@ -21,11 +21,11 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="panel panel-primary text-center no-boder blue">
                         <div class="panel-left pull-left blue">
-                            <i class="fa fa-eye fa-5x"></i>
+                            <i class="fa fa-users fa-5x"></i>
 
                         </div>
                         <div class="panel-right">
-                            <h3>16,150</h3>
+                            <h3>{{($SuperAdmin->where('role', 'admin')->count())}}</h3>
                             <strong> Super Admin </strong>
                         </div>
                     </div>
@@ -33,11 +33,11 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="panel panel-primary text-center no-boder blue">
                         <div class="panel-left pull-left blue">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
+                            <i class="fa fa-home fa-5x"></i>
                         </div>
 
                         <div class="panel-right">
-                            <h3>25,550 </h3>
+                            <h3>{{$penyedia->count()}}</h3>
                             <strong> Penyedia Kost </strong>
 
                         </div>
@@ -46,11 +46,10 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="panel panel-primary text-center no-boder blue">
                         <div class="panel-left pull-left blue">
-                            <i class="fa fa fa-comments fa-5x"></i>
-
+                            <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="panel-right">
-                            <h3>11,225 </h3>
+                            <h3>{{$penyewa->count()}}</h3>
                             <strong> Penyewa Kost </strong>
 
                         </div>
@@ -63,11 +62,10 @@
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary text-center no-boder blue">
                         <div class="panel-left pull-left blue">
-                            <i class="fa fa-users fa-5x"></i>
-
+                            <i class="fa fa-credit-card fa-5x"></i>
                         </div>
                         <div class="panel-right">
-                            <h3>72,525 </h3>
+                            <h3>{{$transaksi->count()}}</h3>
                             <strong> Transaksi </strong>
                         </div>
                     </div>
@@ -80,7 +78,7 @@
 
                         </div>
                         <div class="panel-right">
-                            <h3>11,225 </h3>
+                            <h3>{{$report->count()}}</h3>
                             <strong> Report </strong>
 
                         </div>

@@ -19,10 +19,11 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::join('penyewa', 'transaksi.id_penyewa', '=', 'penyewa.id_penyewa')->join('penyedia', 'transaksi.id_penyedia', '=', 'penyedia.id_penyedia')
-            ->join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
-            ->get(['transaksi.*', 'penyewa.*', 'users.name', 'penyedia.nama_kost']);
-        return view('transakasi.index', compact('transaksi'));
+        // $transaksi = Transaksi::join('penyewa', 'transaksi.id_penyewa', '=', 'penyewa.id_penyewa')->join('penyedia', 'transaksi.id_penyedia', '=', 'penyedia.id_penyedia')
+        //     ->join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
+        //     ->get(['transaksi.*', 'penyewa.*', 'users.name', 'penyedia.nama_kost']);
+        $transaksi = Transaksi::all();
+        return view('SuperAdmin.transaksi.index', compact('transaksi'));
     }
 
     /**
@@ -49,7 +50,7 @@ class TransaksiController extends Controller
         $transaksi = new Transaksi();
         $transaksi->penyewa_id = $request->get('penyewa');
         $penyedia = $request->get('nama_kost');
-        $transaksi->id_penyewa = $penyewa;
+        // $transaksi->id_penyewa = $penyewa;
         $jumlah = $request->get('harga_sewa');
         $transaksi->jumlah = $jumlah;
         $transaksi->tanggal_transaksi = $request->get('tanggal_transaksi');
@@ -57,24 +58,24 @@ class TransaksiController extends Controller
         $transaksi->jenis_transaksi = $request->get('jenis_transaksi');
         $status = $request->get('status_transaksi');
         $transaksi->status = $status;
-        
-        $updatePenyewa = Penyewa::find($penyewa);
-        
+
+        // $updatePenyewa = Penyewa::find($penyewa);
+
         $request->validate([
-            'users_id' => 'required', 
+            'users_id' => 'required',
             'nama_kost' => 'required',
             'bukti_transaksi' => 'required',
-            'harga_sewa' => 'required|integer|max:'. $updatePenyewa->jumlah,
+            // 'harga_sewa' => 'required|integer|max:'. $updatePenyewa->jumlah,
             'tanggal_transaksi' => 'required|date',
             'jenis_transaksi' => 'required',
             'status_transaksi' => 'required',
         ]);
 
         if($status == 'lunas'){
-            $updatePenyewa->jumlah -= $transaksi->jumlah;
+            // $updatePenyewa->jumlah -= $transaksi->jumlah;
         }
         $transaksi->save();
-        $updatePenyewa->save();
+        // $updatePenyewa->save();
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('transaksi.index')->with('success', 'Transaksi Berhasil Dilakukan');
     }

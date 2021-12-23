@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class ReportCOntroller extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +17,13 @@ class ReportCOntroller extends Controller
      */
     public function index()
     {
-        $report = Report::paginate(15);
-        $report = Report::join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
-                    ->get(['users.name']);
-        return view('report.index', ['report' => $report]);
+        // $report = Report::paginate(15);
+        // $report = Report::join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
+        //             ->get(['users.name']);
+        // return view('report.index', ['report' => $report]);
+
+        $report = Report::all();
+        return view('User.report.index', compact('report'));
     }
 
     /**
@@ -27,7 +33,7 @@ class ReportCOntroller extends Controller
      */
     public function create()
     {
-        return view('report.create');
+        return view('User.report.create');
     }
 
     /**
@@ -39,17 +45,33 @@ class ReportCOntroller extends Controller
     public function store(Request $request)
     {
         //TODO : Implementasikan Proses Simpan Ke Database
-        $report = new Report();
-        $report->users_id = $request->get('users');
-        $users = $request->get('name');
+        // $report = new Report();
+        // $report->users_id = $request->get('users');
+        // $report->tanggal_report = now();
+        // $report->keluhan = $request->get('keluhan');
+
+        // $request->validate([
+        //     'report' => 'required',
+        // ]);
+
+        // $report->save();
+        $request->validate([
+            'keluhan' => 'required',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        $report = new Report;
+        $report->users_id = Auth::user()->id;
         $report->tanggal_report = now();
         $report->keluhan = $request->get('keluhan');
-
-        $request->validate([
-            'report' => 'required',
-        ]);
-        
+        $report->users()->associate($user);
         $report->save();
+
+        // return redirect()->to('/report/user')
+        //         ->with('success', 'report telah dikirim');
+        Alert::success('Success', 'Report telah terkirim');
+        return redirect()->route('ReportUser.index');
     }
 
     /**
@@ -95,5 +117,31 @@ class ReportCOntroller extends Controller
     public function destroy($id)
     {
         //
+    }
+    // public function simpanUser(Request $request)
+    // {
+    //     $request->validate([
+    //         'users_id' => 'required',
+    //         'tanggal_report' => 'required',
+    //         'keluhan' => 'required',
+    //     ]);
+
+    //     $user = User::find(Auth::user()->id);
+
+    //     $report = new Report;
+    //     $report->users_id = Auth::user()->id;
+    //     $report->tanggal_report = now();
+    //     $report->keluhan = $request->get('keluhan');
+    //     $report->users()->associate($user);
+    //     $report->save();
+
+    //     return redirect()->to('/report/user')
+    //             ->with('success', 'report telah dikirim');
+
+    // }
+    public function Admin()
+    {
+        $report = Report::all();
+        return view('SuperAdmin.report.index', compact('report'));
     }
 }

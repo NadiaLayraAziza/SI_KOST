@@ -1,5 +1,5 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_transaksi')
+@section('transaksi')
     active-menu
 @endsection
 @section('content')

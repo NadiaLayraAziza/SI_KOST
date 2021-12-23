@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReportPenyediaController extends Controller
 {
@@ -13,7 +17,8 @@ class ReportPenyediaController extends Controller
      */
     public function index()
     {
-        return view('PenyediaKost.Report.index');
+        $report = Report::all();
+        return view('PenyediaKost.report.index', compact('report'));
     }
 
     /**
@@ -34,7 +39,23 @@ class ReportPenyediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'keluhan' => 'required',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        $report = new Report;
+        $report->users_id = Auth::user()->id;
+        $report->tanggal_report = now();
+        $report->keluhan = $request->get('keluhan');
+        $report->users()->associate($user);
+        $report->save();
+
+        // return redirect()->to('/report/user')
+        //         ->with('success', 'report telah dikirim');
+        Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
+        return redirect()->route('Report.index');
     }
 
     /**

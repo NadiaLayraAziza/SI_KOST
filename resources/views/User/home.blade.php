@@ -36,18 +36,19 @@
     <!-- Header Area End -->
     <!-- Item Kost Area Start -->
     <div class="products-catagories-area clearfix">
+        @guest
         <div class="login-menu" style="padding: 20pt; padding-bottom: 50pt">
             <ul class="pull-right">
                 <li><a class="btn btn-primary" href="{{ route('login') }}">Login</a></li>
             </ul>
         </div>
+        @endauth
         <div class="amado-pro-catagory clearfix">
             <!-- Single Catagory -->
             @foreach ($penyedia as $data)
             <div class="single-products-catagory clearfix">
-                <a href="{{ route('home.show', $data->id_penyedia) }}">
-                    <img src="{{asset('assets-user/img/bg-img/1.jpg')}}" alt="">
-                    <img height="300" @if($data->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
+                <a href="{{ route('DetailKost', $data->id_penyedia) }}">
+                    <img height="300" src="{{ asset('storage/'.$data->foto_kost) }}"/>
                     <!-- Hover Content -->
                     <div class="hover-content">
                         <div class="line"></div>

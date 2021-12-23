@@ -139,4 +139,9 @@ class ReportController extends Controller
     //             ->with('success', 'report telah dikirim');
 
     // }
+    public function Admin()
+    {
+        $report = Report::all();
+        return view('SuperAdmin.report.index', compact('report'));
+    }
 }

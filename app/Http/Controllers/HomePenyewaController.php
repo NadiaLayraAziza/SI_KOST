@@ -9,13 +9,14 @@ class HomePenyewaController extends Controller
 {
     public function index()
     {
-        $penyedia = Penyedia::with('user');
+        // $penyedia = Penyedia::with('users');
+        $penyedia = Penyedia::all();
         return view('User.home', compact('penyedia'));
     }
 
-    public function show($id_penyewa)
+    public function ShowKost($id_penyedia)
     {
-        $penyedia = Penyedia::with('user')->find($id_penyewa);
-        return view('SuperAdmin.penyewa.show', compact('penyewa'));
+        $penyedia = Penyedia::with('users')->find($id_penyedia);
+        return view('User.detail', compact('penyedia'));
     }
 }

@@ -47,9 +47,8 @@
             <!-- Single Catagory -->
             @foreach ($penyedia as $data)
             <div class="single-products-catagory clearfix">
-                <a href="{{ route('home.show', $data->id_penyedia) }}">
-                    <img src="{{asset('assets-user/img/bg-img/1.jpg')}}" alt="">
-                    <img height="300" @if($data->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
+                <a href="{{ route('DetailKost', $data->id_penyedia) }}">
+                    <img height="300" src="{{ asset('storage/'.$data->foto_kost) }}"/>
                     <!-- Hover Content -->
                     <div class="hover-content">
                         <div class="line"></div>

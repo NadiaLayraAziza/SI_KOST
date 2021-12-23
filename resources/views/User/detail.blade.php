@@ -50,23 +50,8 @@
 
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
-                                    <img class="d-block w-100" src="img/product-img/pro-big-1.jpg" alt="First slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="img/product-img/pro-big-2.jpg">
-                                    <img class="d-block w-100" src="img/product-img/pro-big-2.jpg" alt="Second slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="img/product-img/pro-big-3.jpg">
-                                    <img class="d-block w-100" src="img/product-img/pro-big-3.jpg" alt="Third slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
-                                    <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
+                                <a class="gallery_img" href="{{ asset('storage/'.$penyedia->foto_kost) }}">
+                                    <img class="d-block w-100" src="{{ asset('storage/'.$penyedia->foto_kost) }}">
                                 </a>
                             </div>
                         </div>
@@ -78,10 +63,8 @@
                     <!-- Product Meta Data -->
                     <div class="product-meta-data">
                         <div class="line"></div>
-                        <p class="product-price">Rp500000</p>
-                        <a href="product-details.html">
-                            <h6>White Modern Chair</h6>
-                        </a>
+                        <p class="product-price"><font size="7">{{ $penyedia->nama_kost }}</font></p>
+                        <h5>{{ $penyedia->alamat_kost }}</h5>
                     </div>
 
                     <div class="short_overview my-5">
@@ -92,6 +75,7 @@
                     <form class="cart clearfix" method="post">
                         <button type="submit" class="btn amado-btn">Pemesanan</button>
                     </form>
+                    {{-- <a href="/booking/user" class="btn amado-btn">Pemesanan</a> --}}
                 </div>
             </div>
         </div>

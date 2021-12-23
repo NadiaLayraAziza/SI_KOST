@@ -9,6 +9,7 @@ use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SuperAdminController extends Controller
 {
@@ -124,7 +125,8 @@ class SuperAdminController extends Controller
         $admin->save();
 
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.index')->with('success', 'Super Admin Berhasil Diedit');
+        Alert::success('success', 'Super Admin Berhasil Diedit');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -135,6 +137,8 @@ class SuperAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        Alert::success('Success', 'Data Super Admin berhasil dihapus');
+        return redirect()->route('admin.index');
     }
 }

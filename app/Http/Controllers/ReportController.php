@@ -70,7 +70,7 @@ class ReportController extends Controller
 
         // return redirect()->to('/report/user')
         //         ->with('success', 'report telah dikirim');
-        Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
+        Alert::success('Success', 'Report telah terkirim');
         return redirect()->route('ReportUser.index');
     }
 

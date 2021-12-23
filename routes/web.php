@@ -59,6 +59,10 @@ Route::group(['middleware' => 'auth'], function () {
         return view('User.report.create');
     });
 
+    Route::get('/report/penyediaKost', function () {
+        return view('PenyediaKost.report.create');
+    });
+
     Route::resource('ReportUser', ReportController::class);
 
     Route::get('/profile/user', function () {

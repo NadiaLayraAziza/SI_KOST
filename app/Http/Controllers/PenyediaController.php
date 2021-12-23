@@ -16,8 +16,10 @@ class PenyediaController extends Controller
      */
     public function index()
     {
-        //
+        $penyedia = Penyedia::with('penyedia');
+        return view('SuperAdmin.penyedia.home', compact('penyedia'));
     }
+
 
     /**
      * Show the form for creating a new resource.

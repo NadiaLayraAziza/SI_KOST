@@ -36,11 +36,13 @@
     <!-- Header Area End -->
     <!-- Item Kost Area Start -->
     <div class="products-catagories-area clearfix">
+        @guest
         <div class="login-menu" style="padding: 20pt; padding-bottom: 50pt">
             <ul class="pull-right">
                 <li><a class="btn btn-primary" href="{{ route('login') }}">Login</a></li>
             </ul>
         </div>
+        @endauth
         <div class="amado-pro-catagory clearfix">
             <!-- Single Catagory -->
             @foreach ($penyedia as $data)

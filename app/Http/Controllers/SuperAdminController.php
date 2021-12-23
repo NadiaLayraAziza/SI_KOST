@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyedia;
+use App\Models\Penyewa;
+use App\Models\Report;
+use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +25,13 @@ class SuperAdminController extends Controller
 
     public function home()
     {
-        return view('SuperAdmin.home');
+        $SuperAdmin    = User::get();
+        $penyedia      = Penyedia::get();
+        $penyewa       = Penyewa::get();
+        $transaksi     = Transaksi::get();
+        $report        = Report::get();
+
+        return view('SuperAdmin.home', compact('SuperAdmin', 'penyedia', 'penyewa', 'transaksi', 'report'));
     }
 
     /**

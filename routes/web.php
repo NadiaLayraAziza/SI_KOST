@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomePenyewaController::class, 'index'])->name('HomeUser');
 
-Route::get('/admin/home', [SuperAdminController::class, 'home']);
+Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
 
 Route::get('/home/user', function () {
     return view('User.home');
@@ -49,23 +49,25 @@ Route::get('/home/detail-kost', function () {
     return view('User.detail');
 });
 
-Route::get('/booking/user', function () {
-    return view('User.booking');
-});
-// Route::get('/booking/{id}', [UserController::class, 'booking']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/booking/user', function () {
+        return view('User.booking');
+    });
+    // Route::get('/booking/{id}', [UserController::class, 'booking']);
 
-Route::get('/payment/user', function () {
-    return view('User.payment');
-});
+    Route::get('/payment/user', function () {
+        return view('User.payment');
+    });
 
-Route::get('/report/user', function () {
-    return view('User.report.create');
-});
+    Route::get('/report/user', function () {
+        return view('User.report.create');
+    });
 
-Route::get('/profile/user', function () {
-    return view('User.profile');
-});
+    Route::get('/profile/user', function () {
+        return view('User.profile');
+    })->name('profile');
 
-Route::get('/daftarkos/user', function () {
-    return view('User.DaftarKost');
+    Route::get('/daftarkos/user', function () {
+        return view('User.DaftarKost');
+    });
 });

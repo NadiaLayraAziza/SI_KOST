@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Kamar extends Model
 {
     use HasFactory;
+    protected $table="kamars";
+    protected $primaryKey = 'id_kamar';
+
+    protected $fillable = [
+        'id_kamar',
+        'tipe_kamar',
+        'Harga_Tahunan',
+        'Harga_bulanan',
+        'Harga_mingguan',
+        'Harga_harian',
+        'Foto_Kamar',
+        'id_penyedia',
+        'jumlah',
+    ];
 }

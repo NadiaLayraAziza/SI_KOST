@@ -25,7 +25,10 @@
             {{-- admin --}}
             @if(Auth::user()->role == 'Penyedia')
             <li>
-                <a class="@yield('home_penyedia')" href=/home/penyedia><i class="fa fa-qrcode"></i> Home</a>
+                <a class="@yield('home_penyedia')" href=/home/penyedia><i class="fa fa-dashboard"></i> Home</a>
+            </li>
+            <li>
+                <a class="@yield('kamar')" href={{ route('kamar.index') }}><i class="fa fa-qrcode"></i> Kelola Kamar</a>
             </li>
             <li>
                 <a class="@yield('penyewa')" href="/menu/penyewa"><i class="fa fa-table"></i> Penyewa Kost</a>

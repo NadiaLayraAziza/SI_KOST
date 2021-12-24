@@ -19,13 +19,8 @@ class PenyediaController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $penyedia = Penyedia::with('penyedia');
+        $penyedia = Penyedia::with('user');
         return view('SuperAdmin.penyedia.home', compact('penyedia'));
-=======
-        $penyedia = Penyedia::with('users')->get();
-        return view('SuperAdmin.penyedia.index', compact('penyedia'));
->>>>>>> 621f8080d855b43a6bd829957e90c33bceb1ed41
     }
 
 

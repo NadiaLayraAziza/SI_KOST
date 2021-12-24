@@ -4,10 +4,7 @@ use App\Http\Controllers\HomePenyewaController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PenyediaController;
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\ReportController;
->>>>>>> 621f8080d855b43a6bd829957e90c33bceb1ed41
+use App\Http\Controllers\HomePenyediaController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ReportPenyediaController;
 use App\Http\Controllers\TransaksiController;
@@ -84,10 +81,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-<<<<<<< HEAD
 // Penyedia Kost
 
-Route::get('/penyediakost/home', [PenyediaController::class, 'home']);
-=======
-Route::get('/report/admin', [ReportController::class, 'Admin']);
->>>>>>> 621f8080d855b43a6bd829957e90c33bceb1ed41
+Route::get('/penyediakost/home', [HomePenyediaController::class, 'home']);

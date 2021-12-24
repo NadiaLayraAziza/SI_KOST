@@ -5,6 +5,7 @@ use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PenyediaController;
 use App\Http\Controllers\HomePenyediaController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ReportPenyediaController;
 use App\Http\Controllers\TransaksiController;
@@ -81,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+Route::get('/report/admin', [ReportController::class, 'Admin']);
 // Penyedia Kost
 
 Route::get('/penyediakost/home', [HomePenyediaController::class, 'home']);

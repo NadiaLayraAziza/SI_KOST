@@ -77,12 +77,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/daftarkos/simpan', [PenyediaController::class, 'simpan']);
 
-    Route::get('/penyedia/home', function () {
+    Route::get('/home/penyedia', function () {
         return view('PenyediaKost.home');
     });
+
+    Route::get('/menu/penyewa', [PenyewaController::class, 'MenuPenyewa']);
 });
 
 Route::get('/report/admin', [ReportController::class, 'Admin']);
-// Penyedia Kost
 
 Route::get('/penyediakost/home', [HomePenyediaController::class, 'home']);

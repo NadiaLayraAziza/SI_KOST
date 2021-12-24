@@ -25,13 +25,13 @@
             {{-- admin --}}
             @if(Auth::user()->role == 'Penyedia')
             <li>
-                <a class="active-menu @yield('menu_kamar')" href={{ route('kamar.index') }}><i class="fa fa-qrcode"></i> Home</a>
+                <a class="@yield('home_penyedia')" href=/home/penyedia><i class="fa fa-qrcode"></i> Home</a>
             </li>
             <li>
-                <a  href="table.html"><i class="fa fa-table"></i> Penyewa Kost</a>
+                <a class="@yield('penyewa')" href="/menu/penyewa"><i class="fa fa-table"></i> Penyewa Kost</a>
             </li>
             <li>
-                <a class="active-menu @yield('menu_report_penyedia')" href={{ route('Report.index') }}><i class="fa fa-qrcode"></i> Report</a>
+                <a class="@yield('menu_report_penyedia')" href={{ route('Report.index') }}><i class="fa fa-qrcode"></i> Report</a>
             </li>
             @endif
         </ul>

@@ -86,7 +86,7 @@
                                     @endif
                                     @if(Auth::user()->role == 'Penyedia')
                                     <div class="cart-btn mt-100">
-                                        <a href="/penyedia/home" class="btn amado-btn w-100">Kelola Kost</a>
+                                        <a href="/home/penyedia" class="btn amado-btn w-100">Kelola Kost</a>
                                     </div>
                                     @endif
                                 </div>

@@ -20,7 +20,7 @@ class PenyediaController extends Controller
     public function index()
     {
         $penyedia = Penyedia::with('user');
-        return view('SuperAdmin.penyedia.home', compact('penyedia'));
+        return view('SuperAdmin.penyedia.index', compact('penyedia'));
     }
 
 

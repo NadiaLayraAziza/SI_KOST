@@ -110,4 +110,10 @@ class PenyewaController extends Controller
         Alert::success('Success', 'Data Penyewa berhasil dihapus');
         return redirect()->route('penyewa.index');
     }
+
+    public function MenuPenyewa()
+    {
+        $penyewa = Penyewa::with('user');
+        return view('PenyediaKost.penyewa.index', compact('penyewa'));
+    }
 }

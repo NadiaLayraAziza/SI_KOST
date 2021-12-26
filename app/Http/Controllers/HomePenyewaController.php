@@ -30,4 +30,14 @@ class HomePenyewaController extends Controller
         //$penyedia = Penyedia::with('users')->find($id);
         return view('User.kamar', compact('kamar'));
     }
+    public function DetailKamar($id_kamar)
+    {
+        //$penyedia = Penyedia::with('users')->where('id_penyedia', $id_penyedia)->first();
+        //$kamar = Kamar::all();
+        //$penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
+        //$kamar = Kamar::with('penyedia')->find('id_kamar', $id_kamar)->get();
+        $kamar = Kamar::with('penyedia')->findOrFail($id_kamar);
+        //$penyedia = Penyedia::with('users')->find($id);
+        return view('User.detailkamar', compact('kamar'));
+    }
 }

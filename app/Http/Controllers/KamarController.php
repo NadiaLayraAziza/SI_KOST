@@ -6,6 +6,8 @@ use App\Models\Kamar;
 use App\Models\Penyedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KamarController extends Controller
@@ -115,9 +117,57 @@ class KamarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_kamar)
     {
-        //
+        //validasi
+        $request->validate([
+            'tipe_kamar' => 'required',
+            'fasilitas' => 'required',
+            'Harga_Tahunan' => 'required',
+            'Harga_bulanan' => 'required',
+            'Harga_mingguan' => 'required',
+            'Harga_harian' => 'required',
+            'jumlah' => 'required',
+        ]);
+        $kamar = Kamar::with('penyedia')->find($id_kamar);
+        $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
+
+        //$penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
+
+        if ($request->file('Foto_Kamar' == '')) {
+            $kamar->tipe_kamar = $request->get('tipe_kamar');
+            $kamar->fasilitas = $request->get('fasilitas');
+            $kamar->Harga_Tahunan = $request->get('Harga_Tahunan');
+            $kamar->Harga_bulanan = $request->get('Harga_bulanan');
+            $kamar->Harga_mingguan = $request->get('Harga_mingguan');
+            $kamar->Harga_harian = $request->get('Harga_harian');
+            $kamar->jumlah = $request->get('jumlah');
+            $kamar->id_penyedia = $penyedia;
+            $kamar->save();
+
+        } else{
+            if ($kamar->Foto_kamar && file_exists(storage_path('app/public/' .$kamar->Foto_kamar)))
+            {
+                Storage::delete(['public/' . $kamar->Foto_kamar]);
+            }
+            // $image_name = $request->file('Foto_kamar')->store('images', 'public');
+            // $kamar->Foto_kamar = $image_name;
+
+            $kamar->tipe_kamar = $request->get('tipe_kamar');
+            $kamar->fasilitas = $request->get('fasilitas');
+            $kamar->Harga_Tahunan = $request->get('Harga_Tahunan');
+            $kamar->Harga_bulanan = $request->get('Harga_bulanan');
+            $kamar->Harga_mingguan = $request->get('Harga_mingguan');
+            $kamar->Harga_harian = $request->get('Harga_harian');
+            // $kamar->Foto_Kamar = $image_name;
+            $kamar->jumlah = $request->get('jumlah');
+            $kamar->id_penyedia = $penyedia;
+            $kamar->save();
+        }
+
+            //jika data berhasil ditambahkan, akan kembali ke halaman utama
+            Alert::success('Success', 'Data kamar Berhasil Diedit');
+            return redirect()->route('kamar.index');
     }
 
     /**

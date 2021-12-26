@@ -20,8 +20,9 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form method="POST"  id="myForm" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('kamar.update', $kamar->id_kamar) }}" id="myForm" enctype="multipart/form-data">
                                     @csrf
+                                @method('PUT')
                                         <div class="form-group">
                                             <label for="tipe_kamar">Type Kost</label>
                                             <input type="tipe_kamar" name="tipe_kamar" class="form-control" id="tipe_kamar" value="{{ $kamar->tipe_kamar }}" aria-describedby="tipe_kamar">
@@ -32,6 +33,7 @@
                                         </div> --}}
                                         <div class="form-group">
                                             <label for="Foto_Kamar">Foto Kamar</label>
+                                            <img width="200" height="200" @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif />
                                             <input class="form-control upload" type="file" name="Foto_Kamar" id="Foto_Kamar" aria-describedby="Foto_Kamar">
                                         </div>
                                         <div class="form-group">
@@ -59,7 +61,6 @@
                                             <input class="form-control" type="number" name="jumlah" id="jumlah" value="{{ $kamar->jumlah }}" aria-describedby="jumlah">
                                         </div>
                                         <div class="form-group">
-                                            <button type="back" class="btn btn-success">Back</button>
                                             <button type="submit" class="btn btn-info">Submit Button</button>
                                         </div>
                                     </form>

@@ -32,6 +32,7 @@ Auth::routes();
 Route::get('/', [HomePenyewaController::class, 'index'])->name('HomeUser');
 
 Route::get('/ShowKost/{id_penyedia}', [HomePenyewaController::class, 'ShowKost'])->name('DetailKost');
+Route::get('/PilihKamar/{id_penyedia}', [HomePenyewaController::class, 'PilihKamar'])->name('PilihKamar');
 
 Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
 

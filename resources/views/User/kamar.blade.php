@@ -47,7 +47,7 @@
             <!-- Single Catagory -->
             @foreach ($kamar as $data)
             <div class="single-products-catagory clearfix">
-                <a href="">
+                <a href="{{ route('DetailKamar', $data->id_kamar) }}">
                     <img height="300" src="{{ asset('storage/'.$data->Foto_kamar) }}"/>
                     <!-- Hover Content -->
                     <div class="hover-content">

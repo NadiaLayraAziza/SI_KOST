@@ -15,7 +15,7 @@ class HomePenyediaController extends Controller
     public function index()
     {
         $penyedia = Penyedia::all();
-        return view('Penyedia.home', compact('penyedia'));
+        return view('PenyediaKost.home', compact('penyedia'));
     }
 
     /**
@@ -48,7 +48,7 @@ class HomePenyediaController extends Controller
     public function show($id_penyedia)
     {
         $penyedia = Penyedia::with('users')->find($id_penyedia);
-        return view('Penyedia.home', compact('penyedia'));
+        return view('PenyediaKost.home', compact('penyedia'));
     }
 
     /**

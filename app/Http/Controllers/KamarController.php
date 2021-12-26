@@ -100,7 +100,12 @@ class KamarController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
+        //$penyewa = Penyewa::with('users','penyewa','kamar')->find($id_penyewa);
+        $kamar = Kamar::with('penyedia')->find($id);
+        //$admin = User::where('id', $id)->first();
+
+        return view('PenyediaKost.Kamar.edit', compact('kamar'));
     }
 
     /**

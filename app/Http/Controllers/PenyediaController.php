@@ -87,7 +87,9 @@ class PenyediaController extends Controller
      */
     public function show($id)
     {
-        //
+        $penyedia = Penyedia::all()->find($id);
+        $kamar = Kamar::with('penyedia')->where('id_penyedia', $id)->get();
+        return view('SuperAdmin.penyedia.show', compact('penyedia','kamar'));
     }
 
     /**

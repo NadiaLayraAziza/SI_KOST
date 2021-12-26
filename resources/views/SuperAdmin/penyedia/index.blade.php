@@ -48,6 +48,9 @@
                                                 <td><img src="{{ asset('storage/' . $item->foto_kost) }}" width="100px;" height="150px;" alt=""></td>
                                                 <td>
                                                     <form action="{{ route('penyedia.destroy', $item->id_penyedia) }}" method="POST"">
+                                                        <a class="btn btn-info" href="{{ route('penyedia.show', $item->id_penyedia) }}">
+                                                            <i class="icon-copy fa fa-eye-square-o" aria-hidden="true"> Detail </i>
+                                                        </a>
                                                         <a href="/penyedia/{{$item->id_penyedia}}/edit"
                                                             class="btn btn-warning">
                                                             <i class="icon-copy fa fa-pencil-square-o"

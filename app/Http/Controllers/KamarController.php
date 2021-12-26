@@ -85,7 +85,11 @@ class KamarController extends Controller
      */
     public function show($id)
     {
-        //
+        //$penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
+        $kamar = Kamar::with('penyedia')->find($id);
+        //$admin = User::where('id', $id)->first();
+
+        return view('PenyediaKost.Kamar.show', compact('kamar'));
     }
 
     /**

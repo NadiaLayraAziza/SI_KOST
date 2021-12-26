@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kamar;
 use App\Models\Penyedia;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -153,7 +154,10 @@ class PenyediaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kamar::where('id_penyedia',$id)->delete();
+        Penyedia::find($id)->delete();
+        Alert::success('Success', 'Data Penyedia berhasil dihapus');
+        return redirect()->route('penyedia.index');
     }
 
     public function simpan(Request $request)

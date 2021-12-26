@@ -72,8 +72,8 @@
                     </div>
 
                     <!-- Add to Cart Form -->
-                    <form class="cart clearfix" method="post">
-                        <button type="submit" class="btn amado-btn">Pemesanan</button>
+                    <form class="cart clearfix" action="{{ route('PilihKamar', $penyedia->id_penyedia) }}">
+                        <button type="submit" class="btn amado-btn">Pilih Kamar</button>
                     </form>
                     {{-- <a href="/booking/user" class="btn amado-btn">Pemesanan</a> --}}
                 </div>

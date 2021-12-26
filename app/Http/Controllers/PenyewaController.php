@@ -7,6 +7,7 @@ use App\Models\Penyedia;
 use App\Models\Penyewa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenyewaController extends Controller
@@ -18,8 +19,18 @@ class PenyewaController extends Controller
      */
     public function index()
     {
-        $penyewa = Penyewa::with('user');
-        return view('SuperAdmin.penyewa.index', compact('penyewa'));
+        if(Auth::user()->role == 'admin'){
+            $penyewa = Penyewa::with('user');
+            return view('SuperAdmin.penyewa.index', compact('penyewa'));
+        } else{
+            if(Auth::user()->role == 'Penyedia'){
+            $penyewa = Penyewa::with('user');
+            return view('PenyediaKost.penyewa.index', compact('penyewa'));
+            }
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/login');
+        }
+
     }
 
     /**

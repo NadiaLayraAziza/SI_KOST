@@ -19,9 +19,11 @@ class KamarController extends Controller
      */
     public function index()
     {
+        //$user = Auth::user();
+        $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
         // return view('PenyediaKost.kamar.index');
-
-        $kamar = Kamar::all();
+        $kamar = Kamar::with('penyedia')->where('id_penyedia', $penyedia)->get();
+        //$kamar = Kamar::all();
         return view('PenyediaKost.Kamar.index', compact('kamar'));
     }
 

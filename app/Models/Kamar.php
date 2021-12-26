@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Penyedia;
 
 class Kamar extends Model
 {
@@ -22,4 +23,9 @@ class Kamar extends Model
         'id_penyedia',
         'jumlah',
     ];
+
+    public function penyedia()
+    {
+        return $this->belongsTo(Penyedia::class, 'id_penyedia');
+    }
 }

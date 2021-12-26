@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kamar;
 use App\Models\Penyedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KamarController extends Controller
@@ -17,6 +18,7 @@ class KamarController extends Controller
     public function index()
     {
         // return view('PenyediaKost.kamar.index');
+
         $kamar = Kamar::all();
         return view('PenyediaKost.Kamar.index', compact('kamar'));
     }
@@ -55,7 +57,7 @@ class KamarController extends Controller
             $image_name = $request->file('Foto_Kamar')->store('images', 'public');
         }
 
-        // $penyedia = Penyedia::find(penyedia()->id_penyedia);
+        $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
 
         //TODO : Implementasikan Proses Simpan Ke Database
         $kamar = new Kamar();
@@ -67,9 +69,7 @@ class KamarController extends Controller
         $kamar->Harga_harian = $request->get('Harga_harian');
         $kamar->Foto_Kamar = $image_name;
         $kamar->jumlah = $request->get('jumlah');
-        // $kamar->id_penyedia = Penyedia::find(penyedia()->id_penyedia);
-        $kamar->created_at = now();
-        $kamar->updated_at = now();
+        $kamar->id_penyedia = $penyedia;
         $kamar->save();
 
         //jika data berhasil ditambahkan, akan kembali ke halaman utama

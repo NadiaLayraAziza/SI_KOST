@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Kamar;
 
 class Penyedia extends Model
 {
@@ -25,5 +26,10 @@ class Penyedia extends Model
     public function users()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function kamar()
+    {
+        return $this->hasMany(Kamar::class);
     }
 }

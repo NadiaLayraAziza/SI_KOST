@@ -33,7 +33,7 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form method="post" action="/admin" id="myForm" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('kamar.store') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
                                     <div class="form-group">
                                         <label for="tipe_kamar">Type Kost</label>

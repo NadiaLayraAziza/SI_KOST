@@ -39,17 +39,17 @@
                                     <tbody>
                                         @foreach ($kamar as $item)
                                             <tr>
-                                                <td>{{ $item->id }}</td>
-                                                <td>{{ $item->id_penyedia->nama_kost }}</td>
+                                                <td>{{ $item->id_kamar }}</td>
+                                                <td>{{ $item->penyedia->nama_kost }}</td>
                                                 <td>{{ $item->tipe_kamar }}</td>
                                                 <td>{{ $item->jumlah }}</td>
                                                 <td>
                                                     {{-- <form action="#"> --}}
                                                     <form action="{{ route('kamar.destroy', $item->id_kamar) }}" method="POST">
-                                                        <a class="btn btn-warning" href="{{ route('kamar.edit', $data->id_kamar) }}">
+                                                        <a class="btn btn-warning" href="{{ route('kamar.edit', $item->id_kamar) }}">
                                                             <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"> Edit </i>
                                                         </a>
-                                                        <a class="btn btn-info" href="{{ route('kamar.show', $data->id_kamar) }}">
+                                                        <a class="btn btn-info" href="{{ route('kamar.show', $item->id_kamar) }}">
                                                             <i class="icon-copy fa fa-eye-square-o" aria-hidden="true"> Detail </i>
                                                         </a>
                                                         @csrf

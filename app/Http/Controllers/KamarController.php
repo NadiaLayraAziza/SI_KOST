@@ -128,6 +128,8 @@ class KamarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kamar::find($id)->delete();
+        Alert::success('Success', 'Data Penyewa berhasil dihapus');
+        return redirect()->route('kamar.index');
     }
 }

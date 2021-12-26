@@ -20,7 +20,7 @@
                     <div class="panel-body">
                         <div class="card">
                             <div class="card-header">
-                                <h3>Tambah Super Admin</h3><br><br>
+                                <h3>Tambah Kamar</h3><br><br>
                             </div>
                             <div class="card-body">
                                 @if ($errors->any())

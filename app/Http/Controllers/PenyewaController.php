@@ -35,10 +35,10 @@ class PenyewaController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
 
 
@@ -52,7 +52,40 @@ class PenyewaController extends Controller
      */
     public function store(Request $request)
     {
+        //$penyedia = User::where('id_user', Auth::user()->id)->value('id_penyedia');
+        $user = Auth::id();
+        //$id = auth()->user()->id;
+        echo $user;
+        $penyewa = new Penyewa();
+        //$kamar = Kamar::all()->where('id_kamar','');
+        //$penyewa -> id_penyewa = $request->get($user);
+        $penyewa -> id_user = $user;
+        $penyewa -> telp_ortu = $request->get('telp_ortu');
+        $penyewa -> jangka_waktu = $request->get('jangka_waktu');
+        $penyewa -> jumlah_waktu = $request->get('jumlah_waktu');
+        $penyewa -> tgl_mulai = $request->get('tgl_mulai');
+        $penyewa -> kost = $request -> get ('id_penyedia');
+        $penyewa -> id_kmr = $request -> get ('id_kamar');
+        $penyewa -> harga_sewa = $request -> get ('harga_sewa');
+
+        $penyewa->save();
+        Alert::success('Success', 'Kamar Berhasil Dibooking');
+        return redirect()->route('Transaksi.index');
+        // $request->validate([
+        //     'id_penyewa' => 'required',
+        //     'id_user' => 'required',
+
+        // ]);
+
+        // $penyedia = new Penyedia;
+        // $penyedia->nama_kost = $request->get('nama_kost');
+        // $penyedia->alamat_kost = $request->get('alamat_kost');
+        // $penyedia->users()->associate($user);
+        // $penyedia->save();
+
         //
+
+        // echo $kamar, $user, $penyewa, $request;
     }
 
     /**
@@ -133,6 +166,7 @@ class PenyewaController extends Controller
     {
         $user = Auth::user();
         $kamar = Kamar::with('penyedia')->find($id);
+        //$penyedia = Kamar::with('penyedia')->find($id);
         return view('User.booking', compact('user','kamar'));
     }
 }

@@ -39,7 +39,7 @@
                     <div class="card-header">{{ __('Formulir Booking') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('penyewa.store', $kamar->id_kamar) }}">
+                        <form method="POST" action="{{ route('penyewa.store') }}">
                             @csrf
                             <div class="form-group row">
                                 <label for="nama" id="nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
@@ -73,8 +73,10 @@
 
                                 <div class="col-md-6">
                                     <input id="id_kamar" type="text" class="form-control" name="id_kamar" required autocomplete="new-text" value="{{ $kamar->id_kamar }}" readonly>
+                                    <input id="id_kamar" type="text" class="form-control" name="id_penyedia" required autocomplete="new-text" value="{{ $kamar->id_penyedia }}" readonly>
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Jangka Waktu') }}</label>
 

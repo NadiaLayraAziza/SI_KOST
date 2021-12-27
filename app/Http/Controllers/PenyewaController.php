@@ -8,6 +8,7 @@ use App\Models\Penyewa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Exists;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenyewaController extends Controller
@@ -20,7 +21,8 @@ class PenyewaController extends Controller
     public function index()
     {
         if(Auth::user()->role == 'admin'){
-            $penyewa = Penyewa::with('user');
+            $penyewa = Penyewa::with('users')->paginate(10);
+
             return view('SuperAdmin.penyewa.index', compact('penyewa'));
         } else{
             if(Auth::user()->role == 'Penyedia'){
@@ -70,7 +72,8 @@ class PenyewaController extends Controller
 
         $penyewa->save();
         Alert::success('Success', 'Kamar Berhasil Dibooking');
-        return redirect()->route('Transaksi.index');
+        return redirect()->route('transaksi.index');
+
         // $request->validate([
         //     'id_penyewa' => 'required',
         //     'id_user' => 'required',
@@ -164,9 +167,14 @@ class PenyewaController extends Controller
 
     public function booking($id)
     {
+        if(Penyewa::all()->where('user_id',$id)->exists()){
+            $kamar = Kamar::with('penyedia')->find($id);
+            return view('User.booking', compact('user','kamar'));
+        }
         $user = Auth::user();
-        $kamar = Kamar::with('penyedia')->find($id);
-        //$penyedia = Kamar::with('penyedia')->find($id);
-        return view('User.booking', compact('user','kamar'));
+            $kamar = Kamar::with('penyedia')->find($id);
+            //$penyedia = Kamar::with('penyedia')->find($id);
+            return view('User.booking', compact('user','kamar'));
+
     }
 }

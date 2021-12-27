@@ -40,7 +40,8 @@ class PenyewaController extends Controller
      */
     public function create()
     {
-        return view('SuperAdmin.penyewa.create');
+
+
     }
 
     /**
@@ -126,5 +127,12 @@ class PenyewaController extends Controller
     {
         $penyewa = Penyewa::with('user');
         return view('PenyediaKost.penyewa.index', compact('penyewa'));
+    }
+
+    public function booking($id)
+    {
+        $user = Auth::user();
+        $kamar = Kamar::with('penyedia')->find($id);
+        return view('User.booking', compact('user','kamar'));
     }
 }

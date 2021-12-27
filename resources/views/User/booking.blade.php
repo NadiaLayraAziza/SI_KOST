@@ -39,13 +39,13 @@
                     <div class="card-header">{{ __('Formulir Booking') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('penyewa.create') }}">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->nama }}" required autocomplete="name" readonly>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -55,62 +55,90 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Alamat (Sesuai KTP)') }}</label>
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Alamat (Sesuai KTP)') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="text-confirm" type="text" class="form-control" name="text_confirmation" value="{{ $user->alamat }}" required autocomplete="new-text" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nomor HP/WA Ortu') }}</label>
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nomor HP/WA Ortu') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="text-confirm" type="text" class="form-control" name="text_confirmation" required autocomplete="new-text">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Kamar') }}</label>
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Kamar') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="text-confirm" type="text" class="form-control" name="text_confirmation" required autocomplete="new-text" value="{{ $kamar->tipe_kamar }}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Jangka Waktu') }}</label>
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Jangka Waktu') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <select name="jangka_waktu" id="jangka_waktu" class="form-control">
+                                        <option value="">== Pilih jangka waktu ==</option>
+                                        <option value="tahunan">Tahunan</option>
+                                        <option value="bulanan">Bulanan</option>
+                                        <option value="mingguan">Mingguan</option>
+                                        <option value="harian">Harian</option>
+                                    </select>
+                                    {{-- <input type="button" id="showVal" value="try" /> --}}
+                                    <input id="demo" type="number" class="form-control" name="text_confirmation" required autocomplete="new-text" readonly>
+                                    <script>
+                                        function () {
+                                            var sel = document.getElementById('janka_waktu');
+                                            var el = document.getElementById('display');
+                                            document.getElementById('showVal').onclick = function () {
+                                            el.value = sel.value;
+                                            }
+                                        }
+                                    </script>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Jumlah Waktu') }}</label>
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Jumlah Waktu') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="number" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="text-confirm" type="number" class="form-control" name="text_confirmation" required autocomplete="new-text">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Mulai') }}</label>
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Mulai') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="date" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="gambar" class="col-md-4 col-form-label text-md-right">Gambar</label>
-                                <div class="col-md-6">
-                                    {{-- <img class="product" width="200" height="200" @if($user->gambar) src="{{ asset('storage/'.$user->gambar) }}" @endif /> --}}
-                                    <input class="uploads form-control" type="file" style="margin-top: 20px;" name="gambar" ></br>
+                                    <input id="text-confirm" type="date" class="form-control" name="text_confirmation" required autocomplete="new-text">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Submit') }}
+                                        {{ __('Hitung') }}
                                     </button>
                                 </div>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- kolom sebelah -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">{{ __('Cart Total') }}</div>
+
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('penyewa.create') }}">
+                            <label for="text-confirm" class=" col-form-label text-md-right">Total</label>
+                            <input id="text-confirm" type="text" class="form-control" name="text_confirmation" value="{{ $user->alamat }}" required autocomplete="new-text" readonly>
+                        </br>
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Submit') }}
+                            </button>
                         </form>
                     </div>
                 </div>

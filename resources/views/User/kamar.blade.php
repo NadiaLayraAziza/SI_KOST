@@ -48,7 +48,7 @@
             @foreach ($kamar as $data)
             <div class="single-products-catagory clearfix">
                 <a href="{{ route('DetailKamar', $data->id_kamar) }}">
-                    <img height="300" src="{{ asset('storage/'.$data->Foto_kamar) }}"/>
+                    <img class="d-block w-100"  @if($data->Foto_Kamar) src="{{ asset('storage/'.$data->Foto_Kamar) }}" @endif>
                     <!-- Hover Content -->
                     <div class="hover-content">
                         <div class="line"></div>

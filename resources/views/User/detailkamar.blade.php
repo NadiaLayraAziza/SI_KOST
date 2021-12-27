@@ -51,7 +51,7 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <a class="gallery_img" href="{{ asset('storage/'.$kamar->foto_kamar) }}">
-                                    <img class="d-block w-100" src="{{ asset('storage/'.$kamar->foto_kamar) }}">
+                                    <img class="d-block w-100"  @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif>
                                 </a>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                     </div>
 
                     <!-- Add to Cart Form -->
-                    <form class="cart clearfix" action="{{ route('PilihKamar', $kamar->id_kamar) }}">
+                    <form class="cart clearfix" action="{{ route('Booking', $kamar->id_kamar) }}">
                         <button type="submit" class="btn amado-btn">Pesan Sekarang</button>
                     </form>
                     {{-- <a href="/booking/user" class="btn amado-btn">Pemesanan</a> --}}

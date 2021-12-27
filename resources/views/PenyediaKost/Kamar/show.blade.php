@@ -32,7 +32,7 @@
                                         </div> --}}
                                         <div class="form-group">
                                             <label for="Foto_Kamar">Foto Kamar</label>
-                                            <input class="form-control upload" type="file" name="Foto_Kamar" id="Foto_Kamar" aria-describedby="Foto_Kamar" >
+                                            <img width="200" height="200" @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif />
                                         </div>
                                         <div class="form-group">
                                             <label for="fasilitas">Fasilitas</label>

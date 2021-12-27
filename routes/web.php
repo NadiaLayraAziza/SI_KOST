@@ -34,6 +34,7 @@ Route::get('/', [HomePenyewaController::class, 'index'])->name('HomeUser');
 Route::get('/ShowKost/{id_penyedia}', [HomePenyewaController::class, 'ShowKost'])->name('DetailKost');
 Route::get('/PilihKamar/{id_penyedia}', [HomePenyewaController::class, 'PilihKamar'])->name('PilihKamar');
 Route::get('/PilihKamar/DetailKamar/{id_kamar}', [HomePenyewaController::class, 'DetailKamar'])->name('DetailKamar');
+Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');;
 
 Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
 

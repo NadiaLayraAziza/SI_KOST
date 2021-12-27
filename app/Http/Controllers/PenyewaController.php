@@ -22,8 +22,9 @@ class PenyewaController extends Controller
     {
         if(Auth::user()->role == 'admin'){
             $penyewa = Penyewa::with('users')->paginate(10);
+            $kamar = Kamar::all();
 
-            return view('SuperAdmin.penyewa.index', compact('penyewa'));
+            return view('SuperAdmin.penyewa.index', compact('penyewa',$kamar));
         } else{
             if(Auth::user()->role == 'Penyedia'){
             $penyewa = Penyewa::with('user');
@@ -167,10 +168,10 @@ class PenyewaController extends Controller
 
     public function booking($id)
     {
-        if(Penyewa::all()->where('user_id',$id)->exists()){
-            $kamar = Kamar::with('penyedia')->find($id);
-            return view('User.booking', compact('user','kamar'));
-        }
+        // if(Penyewa::all()->where('user_id',$id)->exists()){
+        //     $kamar = Kamar::with('penyedia')->find($id);
+        //     return view('User.booking', compact('user','kamar'));
+        // }
         $user = Auth::user();
             $kamar = Kamar::with('penyedia')->find($id);
             //$penyedia = Kamar::with('penyedia')->find($id);

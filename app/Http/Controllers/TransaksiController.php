@@ -8,6 +8,7 @@ use App\Models\Penyedia;
 use App\Models\Penyewa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
@@ -19,11 +20,18 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->rolde == 'admin'){
+            $transaksi = Transaksi::all();
+            return view('SuperAdmin.transaksi.index', compact('transaksi'));
+        } else
+        if(Auth::user()->rolde == 'peneydia'){
+            $transaksi = Transaksi::all();
+            return view('SuperAdmin.transaksi.index', compact('transaksi'));
+        }
         // $transaksi = Transaksi::join('penyewa', 'transaksi.id_penyewa', '=', 'penyewa.id_penyewa')->join('penyedia', 'transaksi.id_penyedia', '=', 'penyedia.id_penyedia')
         //     ->join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
         //     ->get(['transaksi.*', 'penyewa.*', 'users.name', 'penyedia.nama_kost']);
-        $transaksi = Transaksi::all();
-        return view('SuperAdmin.transaksi.index', compact('transaksi'));
+
     }
 
     /**

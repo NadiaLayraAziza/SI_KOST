@@ -35,16 +35,18 @@
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Kost</th>
+                                        <th>Kamar</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($penyewa as $pyw => $data)
                                     <tr>
-                                        <td>{{ $pyw + $penyewa->firstitem() }}</td>
+                                        <td>{{ $pyw + $penyewa ->firstItem() }}</td>
                                         <td>{{ $data->users->nama }}</td>
                                         <td>{{ $data->users->email }}</td>
                                         <td class="center">{{ $data->penyedia->nama_kost }}</td>
+                                        <td class="center">{{ $data->kamar->tipe_kamar }}</td>
                                         <td>
                                             <form action="{{ route('penyewa.destroy', $data->id_penyewa) }}" method="POST">
                                                 <a href="{{ route('penyewa.show', $data->id_penyewa) }}" class="btn btn-info">

@@ -39,13 +39,13 @@
                     <div class="card-header">{{ __('Formulir Booking') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('penyewa.create') }}">
+                        <form method="POST" action="{{ route('penyewa.store', $kamar->id_kamar) }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
+                                <label for="nama" id="nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->nama }}" required autocomplete="name" readonly>
+                                    <input id="nama" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->nama }}" required autocomplete="name" readonly>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -58,70 +58,70 @@
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Alamat (Sesuai KTP)') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="text-confirm" type="text" class="form-control" name="text_confirmation" value="{{ $user->alamat }}" required autocomplete="new-text" readonly>
+                                    <input id="alamat" type="text" class="form-control" name="text_confirmation" value="{{ $user->alamat }}" required autocomplete="new-text" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nomor HP/WA Ortu') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="text-confirm" type="text" class="form-control" name="text_confirmation" required autocomplete="new-text">
+                                    <input id="telp_ortu" type="text" class="form-control" name="telp_ortu" required autocomplete="new-text">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Kamar') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="text-confirm" type="text" class="form-control" name="text_confirmation" required autocomplete="new-text" value="{{ $kamar->tipe_kamar }}" readonly>
+                                    <input id="id_kamar" type="text" class="form-control" name="id_kamar" required autocomplete="new-text" value="{{ $kamar->id_kamar }}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Jangka Waktu') }}</label>
 
                                 <div class="col-md-6">
-                                    <select name="jangka_waktu" id="jangka_waktu" class="form-control">
+                                    <select name="jangka_waktu" id="jangka_waktu" class="form-control jangka">
                                         <option value="">== Pilih jangka waktu ==</option>
-                                        <option value="tahunan">Tahunan</option>
-                                        <option value="bulanan">Bulanan</option>
-                                        <option value="mingguan">Mingguan</option>
-                                        <option value="harian">Harian</option>
+                                        <option value="1000">Tahunan</option>
+                                        <option value="100">Bulanan</option>
+                                        <option value="10">Mingguan</option>
+                                        <option value="1">Harian</option>
                                     </select>
                                     {{-- <input type="button" id="showVal" value="try" /> --}}
-                                    <input id="demo" type="number" class="form-control" name="text_confirmation" required autocomplete="new-text" readonly>
-                                    <script>
-                                        function () {
-                                            var sel = document.getElementById('janka_waktu');
-                                            var el = document.getElementById('display');
-                                            document.getElementById('showVal').onclick = function () {
-                                            el.value = sel.value;
-                                            }
-                                        }
-                                    </script>
+
                                 </div>
+
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">Harga</label>
+                                <div class="col-md-6">
+                                    <p id="harga">Harga</p>
+                                </div>
+
                             </div>
                             <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Jumlah Waktu') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="text-confirm" type="number" class="form-control" name="text_confirmation" required autocomplete="new-text">
+                                    <input type="text" id="jumlah_waktu" name="jumlah_waktu" class="form-control" placeholder="Jumlah Waktu">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Mulai') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="text-confirm" type="date" class="form-control" name="text_confirmation" required autocomplete="new-text">
+                                    <input id="tgl_mulai" type="date" class="form-control" name="tgl_mulai" required autocomplete="new-text">
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            {{-- <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Hitung') }}
                                     </button>
                                 </div>
-                            </div>
-                        </form>
+                            </div> --}}
+
                     </div>
                 </div>
             </div>
@@ -132,9 +132,10 @@
                     <div class="card-header">{{ __('Cart Total') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('penyewa.create') }}">
+
+                            @csrf
                             <label for="text-confirm" class=" col-form-label text-md-right">Total</label>
-                            <input id="text-confirm" type="text" class="form-control" name="text_confirmation" value="{{ $user->alamat }}" required autocomplete="new-text" readonly>
+                            <input type="text" id="harga_sewa" name="harga_sewa"class="form-control" placeholder="Total" readonly>
                         </br>
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Submit') }}
@@ -146,4 +147,22 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("select.jangka").change(function(){
+        var selectedJangka = $(this).children("option:selected").val();
+        //alert("You have selected the country - " + selectedJangka);
+        document.getElementById('harga').textContent = selectedJangka;
+    });
+
+        $("#jumlah_waktu").keyup(function() {
+            var harga  = $("#harga").text();
+            var jumlah = $("#jumlah_waktu").val();
+
+            var total = parseInt(harga) * parseInt(jumlah);
+            $("#harga_sewa").val(total);
+        });
+    });
+</script>
 @endsection

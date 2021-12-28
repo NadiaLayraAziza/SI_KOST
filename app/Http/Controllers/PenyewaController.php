@@ -58,7 +58,7 @@ class PenyewaController extends Controller
         //$penyedia = User::where('id_user', Auth::user()->id)->value('id_penyedia');
         $user = Auth::id();
         //$id = auth()->user()->id;
-        echo $user;
+        //echo $user;
         $penyewa = new Penyewa();
         //$kamar = Kamar::all()->where('id_kamar','');
         //$penyewa -> id_penyewa = $request->get($user);
@@ -73,7 +73,7 @@ class PenyewaController extends Controller
 
         $penyewa->save();
         Alert::success('Success', 'Kamar Berhasil Dibooking');
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi.create');
 
         // $request->validate([
         //     'id_penyewa' => 'required',
@@ -168,14 +168,23 @@ class PenyewaController extends Controller
 
     public function booking($id)
     {
-        // if(Penyewa::all()->where('user_id',$id)->exists()){
-        //     $kamar = Kamar::with('penyedia')->find($id);
-        //     return view('User.booking', compact('user','kamar'));
-        // }
-        $user = Auth::user();
-            $kamar = Kamar::with('penyedia')->find($id);
-            //$penyedia = Kamar::with('penyedia')->find($id);
-            return view('User.booking', compact('user','kamar'));
+        $user = Auth::user()->id;
+        if(Penyewa::where('user_id',$user)){
+            $user = Auth::user();
+            $penyedia = Kamar::with('penyedia')->find($id);
+            $kamar = Kamar::with('penyedia')->where('id_penyedia',$id);
+            $penyewa = Penyewa::with('users')->where('id_user',$user)->paginate(5);
+
+            return view('User.bookinghistory', compact('user','kamar','penyewa','penyedia'));
+            //return view('User.booking', compact('user','kamar'));
+
+        } else{
+            $user = Auth::user();
+            $kamar = Kamar::with('penyedia')->find($user);
+            $penyewa = Penyewa::with('users')->find($user);
+            return view('User.booking', compact('user','kamar','penyewa'));
+        }
+
 
     }
 }

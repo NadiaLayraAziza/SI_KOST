@@ -37,10 +37,32 @@
         <div class="row justify-content">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Formulir Booking') }}</div>
+                    <div class="card-header">{{ __('Booking History') }} {{ $user->nama }}</div>
                     <div class="card-body">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Kost</th>
+                                    <th>Kamar</th>
 
-
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($penyewa as $pyw => $data)
+                                <tr>
+                                    <td>{{ $pyw + $penyewa ->firstItem() }}</td>
+                                    <td>{{ $data->users->nama }}</td>
+                                    <td>{{ $data->users->email }}</td>
+                                    <td class="center">{{ $data->penyedia->nama_kost }}</td>
+                                    <td class="center">{{ $data->kamar->tipe_kamar }}</td>
+                                    
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

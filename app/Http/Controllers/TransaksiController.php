@@ -20,14 +20,17 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->rolde == 'admin'){
+        if (Auth::user()->role == 'admin'){
             $transaksi = Transaksi::all();
             return view('SuperAdmin.transaksi.index', compact('transaksi'));
         } else
-        if(Auth::user()->rolde == 'peneydia'){
+        if(Auth::user()->role == 'penyedia'){
             $transaksi = Transaksi::all();
             return view('SuperAdmin.transaksi.index', compact('transaksi'));
         }
+        $user= Auth::user()->id;
+        $transaksi = Transaksi::where('id_user',$user);
+        return view('User.payment', compact('user','transaksi'));
         // $transaksi = Transaksi::join('penyewa', 'transaksi.id_penyewa', '=', 'penyewa.id_penyewa')->join('penyedia', 'transaksi.id_penyedia', '=', 'penyedia.id_penyedia')
         //     ->join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
         //     ->get(['transaksi.*', 'penyewa.*', 'users.name', 'penyedia.nama_kost']);
@@ -41,9 +44,26 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        $penyewa = Penyewa::with('user')->get();
-        $penyedia = Penyedia::where('nama_kost')->get();
-        return view('transaksi.create', ['transaksi' => $penyewa, 'penyedia' => $penyedia]);
+        if (Auth::user()->role == 'admin'){
+            $transaksi = Transaksi::all();
+            return view('SuperAdmin.transaksi.create', compact('transaksi'));
+        } else
+        if(Auth::user()->role == 'penyedia'){
+            $transaksi = Transaksi::all();
+            return view('SuperAdmin.transaksi.create', compact('transaksi'));
+        }
+
+        // $penyewa = Penyewa::with('users')->get();
+        // $penyedia = Penyedia::where('nama_kost')->get();
+        $user= Auth::user();
+        $kamar = Kamar::with('penyewa')->find($user);
+        //return view('User.payment', compact('penyewa','penyedia','user','transaksi'));
+
+        return view('User.payment', compact('user','kamar'));
+
+        // $penyewa = Penyewa::with('user')->get();
+        // $penyedia = Penyedia::where('nama_kost')->get();
+        // return view('transaksi.create', ['transaksi' => $penyewa, 'penyedia' => $penyedia]);
     }
 
     /**
@@ -54,16 +74,32 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role == 'penyewa'){
+            $transaksi = Transaksi::all();
+            return view('SuperAdmin.transaksi.create', compact('transaksi'));
+        } else
+        if(Auth::user()->role == 'penyedia'){
+            $transaksi = Transaksi::all();
+            return view('SuperAdmin.transaksi.create', compact('transaksi'));
+        }
         //TODO : Implementasikan Proses Simpan Ke Database
         $transaksi = new Transaksi();
-        $transaksi->penyewa_id = $request->get('penyewa');
+
+        $penyewa_id = Auth::user();
+        $penyewa_harga = Penyewa::with('Users')->harga_sewa;
+        $transaksi->pengirim = $penyewa_id;
+        $transaksi->penerima = '1';
+        $transaksi->tanggal_transaksi = $request->get('tanggal_transaksi');
+        $transaksi->jumlah_transaki = $penyewa_harga;
+        $transaksi->bukti_transaksi = $request->get('bukti_transaksi');
+        $transaksi->jenis_transaksi = $request->get('jenis_transaksi');
+
         $penyedia = $request->get('nama_kost');
         // $transaksi->id_penyewa = $penyewa;
         $jumlah = $request->get('harga_sewa');
         $transaksi->jumlah = $jumlah;
         $transaksi->tanggal_transaksi = $request->get('tanggal_transaksi');
-        $transaksi->bukti_transaksi = $request->get('bukti_transaksi');
-        $transaksi->jenis_transaksi = $request->get('jenis_transaksi');
+
         $status = $request->get('status_transaksi');
         $transaksi->status = $status;
 

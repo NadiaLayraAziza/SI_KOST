@@ -37,8 +37,15 @@
                     <div class="card-header">{{ __('Payment') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('transaksi.store') }}" enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group row">
+                                <label for="gambar" class="col-md-4 col-form-label text-md-right">Nama Penyewa</label>
+                                <div class="col-md-6">
+                                    <input class="uploads form-control" type="text" style="margin-top: 20px;" name="id_user" value="{{ $user->nama }}"></br>
+                                </div>
+                            </div>
+                           
                             <div class="form-group row">
                                 <label for="gambar" class="col-md-4 col-form-label text-md-right">Gambar</label>
                                 <div class="col-md-6">

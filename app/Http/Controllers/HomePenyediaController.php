@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Penyedia;
+use App\Models\Peraturan;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomePenyediaController extends Controller
 {
@@ -14,8 +19,14 @@ class HomePenyediaController extends Controller
      */
     public function index()
     {
-        $penyedia = Penyedia::all();
-        return view('PenyediaKost.home', compact('penyedia'));
+        // $penyedia = Penyedia::all();
+        $penyedia = Penyedia::with('users')->where('id_user', Auth::user()->id)->get();
+        $id_penyedia = Penyedia::with('users')->where('id_user', Auth::user()->id)->value('id_penyedia');
+        $peraturan = Peraturan::with('penyedia')->where('id_penyedia', $id_penyedia)->get();
+        $isi_peraturan = Peraturan::with('penyedia')->where('id_penyedia', $id_penyedia)->value('peraturan');
+        $arr_isi=explode("\r\n",$isi_peraturan);
+        $jum_baris=count($arr_isi);
+        return view('PenyediaKost.home', compact('penyedia','peraturan','jum_baris'));
     }
 
     /**
@@ -57,9 +68,10 @@ class HomePenyediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_penyedia)
     {
-        //
+        $penyedia = Penyedia::with('users')->find($id_penyedia);
+        return view('PenyediaKost.InfoKost.edit', compact('penyedia'));
     }
 
     /**
@@ -69,9 +81,44 @@ class HomePenyediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_penyedia)
     {
-        //
+        //validasi
+        $request->validate([
+            'foto_kost' => 'required',
+            'nama_kost' => 'required',
+            'alamat_kost' => 'required',
+            'nama' => 'required',
+            'no_hp' => 'required',
+        ]);
+
+        $penyedia = Penyedia::with('users')->find($id_penyedia);
+
+        if ($request->file('foto_kost' == '')) {
+            $penyedia->nama_kost = $request->get('nama_kost');
+            $penyedia->alamat_kost = $request->get('alamat_kost');
+            $penyedia->users->nama = $request->get('nama');
+            $penyedia->users->no_hp = $request->get('no_hp');
+            $penyedia->save();
+
+        } else{
+            if ($penyedia->foto_kost && file_exists(storage_path('app/public/' .$penyedia->foto_kost)))
+            {
+                \Storage::delete(['public/' . $penyedia->foto_kost]);
+            }
+            $image_name = $request->file('foto_kost')->store('images', 'public');
+
+            $penyedia->foto_kost = $image_name;
+            $penyedia->nama_kost = $request->get('nama_kost');
+            $penyedia->alamat_kost = $request->get('alamat_kost');
+            $penyedia->users->nama = $request->get('nama');
+            $penyedia->users->no_hp = $request->get('no_hp');
+            $penyedia->save();
+        }
+
+            //jika data berhasil ditambahkan, akan kembali ke halaman utama
+            Alert::success('Success', 'Data Penyedia Berhasil Diupdate');
+            return Redirect::to('/home/penyedia');
     }
 
     /**

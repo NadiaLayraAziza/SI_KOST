@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use App\Models\Kamar;
+use App\Models\Peraturan;
 
 class Penyedia extends Model
 {
@@ -31,5 +33,10 @@ class Penyedia extends Model
     public function kamar()
     {
         return $this->hasMany(Kamar::class);
+    }
+
+    public function peraturan()
+    {
+        return $this->hasOne(Peraturan::class);
     }
 }

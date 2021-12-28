@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kamar;
 use App\Models\Penyedia;
+use App\Models\Peraturan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,11 @@ class HomePenyewaController extends Controller
     public function ShowKost($id_penyedia)
     {
         $penyedia = Penyedia::with('users')->find($id_penyedia);
-        return view('User.detail', compact('penyedia'));
+        $peraturan = Peraturan::with('penyedia')->find($id_penyedia);
+        $isi_peraturan = Peraturan::with('penyedia')->where('id_penyedia', $id_penyedia)->value('peraturan');
+        $arr_isi=explode("\r\n",$isi_peraturan);
+        $jum_baris=count($arr_isi);
+        return view('User.detail', compact('penyedia','peraturan','jum_baris'));
     }
     public function PilihKamar($id_penyedia)
     {
@@ -38,6 +43,9 @@ class HomePenyewaController extends Controller
         //$kamar = Kamar::with('penyedia')->find('id_kamar', $id_kamar)->get();
         $kamar = Kamar::with('penyedia')->findOrFail($id_kamar);
         //$penyedia = Penyedia::with('users')->find($id);
-        return view('User.detailkamar', compact('kamar'));
+        $isi_fasilitas = Kamar::with('penyedia')->value('fasilitas');
+        $arr_isi=explode("\r\n",$isi_fasilitas);
+        $jum_baris=count($arr_isi);
+        return view('User.detailkamar', compact('kamar','jum_baris'));
     }
 }

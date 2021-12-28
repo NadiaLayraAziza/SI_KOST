@@ -5,6 +5,7 @@ use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PenyediaController;
 use App\Http\Controllers\HomePenyediaController;
+use App\Http\Controllers\PeraturanController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ReportPenyediaController;
@@ -46,6 +47,8 @@ Route::resource('transaksi', TransaksiController::class);
 
 Route::resource('penyedia', PenyediaController::class);
 
+Route::resource('peraturan', PeraturanController::class);
+
 Route::resource('kamar', KamarController::class);
 
 Route::resource('Report', ReportPenyediaController::class);
@@ -81,9 +84,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/daftarkos/simpan', [PenyediaController::class, 'simpan']);
 
-    Route::get('/home/penyedia', function () {
-        return view('PenyediaKost.home');
-    });
+    Route::get('/home/penyedia', [HomePenyediaController::class, 'index']);
+
+    Route::resource('HomePenyedia', HomePenyediaController::class);
 
     Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');
 
@@ -92,4 +95,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/report/admin', [ReportController::class, 'Admin']);
 
-Route::get('/penyediakost/home', [HomePenyediaController::class, 'home']);
+// Route::get('/penyediakost/home', [HomePenyediaController::class, 'home']);

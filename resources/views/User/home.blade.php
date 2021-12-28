@@ -48,7 +48,8 @@
             @foreach ($penyedia as $data)
             <div class="single-products-catagory clearfix">
                 <a href="{{ route('DetailKost', $data->id_penyedia) }}">
-                    <img height="300" src="{{ asset('storage/'.$data->foto_kost) }}"/>
+                    <img class="d-block w-100" src="{{ asset('storage/'.$data->foto_kost) }}" style="width:400px;height:250px;" />
+                    {{--  height="20" width="20" --}}
                     <!-- Hover Content -->
                     <div class="hover-content">
                         <div class="line"></div>
@@ -58,6 +59,7 @@
                 </a>
             </div>
             @endforeach
+
         </div>
     </div>
     <!-- Item Kost Area End -->

@@ -131,10 +131,8 @@ class KamarController extends Controller
             'Harga_harian' => 'required',
             'jumlah' => 'required',
         ]);
-        $kamar = Kamar::with('penyedia')->find($id_kamar);
+        $kamar = Kamar::with('penyedia')->where('id_kamar', $id_kamar)->first();
         $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
-
-        //$penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
 
         if ($request->file('Foto_Kamar' == '')) {
             $kamar->tipe_kamar = $request->get('tipe_kamar');
@@ -148,20 +146,19 @@ class KamarController extends Controller
             $kamar->save();
 
         } else{
-            if ($kamar->Foto_kamar && file_exists(storage_path('app/public/' .$kamar->Foto_kamar)))
+            if ($kamar->Foto_Kamar && file_exists(storage_path('app/public/' .$kamar->Foto_Kamar)))
             {
-                Storage::delete(['public/' . $kamar->Foto_kamar]);
+                \Storage::delete(['public/' . $kamar->Foto_Kamar]);
             }
-            // $image_name = $request->file('Foto_kamar')->store('images', 'public');
-            // $kamar->Foto_kamar = $image_name;
+            $image_name = $request->file('Foto_Kamar')->store('images', 'public');
 
+            $kamar->Foto_Kamar = $image_name;
             $kamar->tipe_kamar = $request->get('tipe_kamar');
             $kamar->fasilitas = $request->get('fasilitas');
             $kamar->Harga_Tahunan = $request->get('Harga_Tahunan');
             $kamar->Harga_bulanan = $request->get('Harga_bulanan');
             $kamar->Harga_mingguan = $request->get('Harga_mingguan');
             $kamar->Harga_harian = $request->get('Harga_harian');
-            // $kamar->Foto_Kamar = $image_name;
             $kamar->jumlah = $request->get('jumlah');
             $kamar->id_penyedia = $penyedia;
             $kamar->save();

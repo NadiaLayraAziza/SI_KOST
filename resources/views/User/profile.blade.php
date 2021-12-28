@@ -29,7 +29,7 @@
         <!-- Amado Nav -->
         @include('layouts-user.navbar')
     </header>
-    <div class="single-product-area section-padding-100 clearfix">
+    <div class="single-product-area section-padding-50 clearfix">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-8">

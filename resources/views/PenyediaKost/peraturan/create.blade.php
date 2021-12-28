@@ -6,7 +6,7 @@
 <div id="page-wrapper" >
     <div class="header">
         <h1 class="page-header">
-            Edit Peraturan Kost
+            Create Peraturan Kost
         </h1>
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
@@ -30,16 +30,17 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form method="POST" action="{{ route('peraturan.update', $peraturan->id_peraturan) }}" id="myForm" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('peraturan.store') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="peraturan">Peraturan</label>
-                                        <textarea class="form-control" rows="10" type="peraturan" name="peraturan" id="peraturan" aria-describedby="peraturan">{{ $peraturan->peraturan }}</textarea>
+                                        <textarea class="form-control" rows="10" type="peraturan" name="peraturan" id="peraturan" aria-describedby="peraturan"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-info">Submit Button</button>
-                                    <button type="reset" class="btn btn-danger">Reset Button</button>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info">Submit Button</button>
+                                        <button type="reset" class="btn btn-danger">Reset Button</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

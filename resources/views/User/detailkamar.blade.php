@@ -29,7 +29,7 @@
         <!-- Amado Nav -->
         @include('layouts-user.navbar')
     </header>
-    <div class="single-product-area section-padding-100 clearfix">
+    <div class="single-product-area section-padding-50 clearfix">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -44,21 +44,21 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-6">
                 <div class="single_product_thumb">
                     <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a class="gallery_img" href="{{ asset('storage/'.$kamar->foto_kamar) }}">
-                                    <img class="d-block w-100"  @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif>
+                                <a class="gallery_img" href="{{ asset('storage/'.$kamar->Foto_Kamar) }}">
+                                    <img style="width:480px;height:300px;"  @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-6">
                 <div class="single_product_desc">
                     <!-- Product Meta Data -->
                     <div class="product-meta-data">
@@ -68,7 +68,9 @@
                     </div>
 
                     <div class="short_overview my-5">
-                        <p>Fasilitas: {{ $kamar->fasilitas }}</p>
+                        <p>Fasilitas : </p>
+                        <textarea style="font-size: 12pt" class="form-control" rows="{{ $jum_baris }}" disabled>{{ $kamar->fasilitas }}</textarea>
+                        <br>
                         <p>Harga Per-Tahun: Rp. {{ $kamar->Harga_Tahunan }}</p>
                         <p>Harga Per-Bulan: Rp. {{ $kamar->Harga_bulanan }}</p>
                         <p>Harga Per-Mingguan: Rp. {{ $kamar->Harga_mingguan }}</p>

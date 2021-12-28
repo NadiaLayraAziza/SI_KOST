@@ -165,7 +165,7 @@ class PenyediaController extends Controller
     public function simpan(Request $request)
     {
         $request->validate([
-            // 'id_user' => Auth::user()->id,
+            //'id_user' => Auth::user()->id,
             'nama_kost' => 'required',
             'alamat_kost' => 'required',
             'foto_kost'=> 'required|file|image|mimes:jpeg,png,jpg',
@@ -189,9 +189,9 @@ class PenyediaController extends Controller
         ->update([
             'role' => "Penyedia"
         ]);
-
-        return redirect()->to('/penyedia/home')
-                ->with('success', 'Kost telah berhasil didaftarkan');
+        
+        Alert::success('Success', 'Kost telah berhasil didaftarkan');
+        return redirect()->to('home/penyedia');
 
     }
 

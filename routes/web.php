@@ -34,7 +34,7 @@ Route::get('/', [HomePenyewaController::class, 'index'])->name('HomeUser');
 Route::get('/ShowKost/{id_penyedia}', [HomePenyewaController::class, 'ShowKost'])->name('DetailKost');
 Route::get('/PilihKamar/{id_penyedia}', [HomePenyewaController::class, 'PilihKamar'])->name('PilihKamar');
 Route::get('/PilihKamar/DetailKamar/{id_kamar}', [HomePenyewaController::class, 'DetailKamar'])->name('DetailKamar');
-Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');;
+Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');
 
 Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
 
@@ -56,9 +56,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
     // Route::get('/booking/{id}', [UserController::class, 'booking']);
 
-    Route::get('/payment/user', function () {
-        return view('User.payment');
-    });
+    // Route::get('/payment/user', function () {
+    //     return view('User.payment');
+    // });
+    Route::resource('transaksi', TransaksiController::class);
 
     Route::get('/report/user', function () {
         return view('User.report.create');
@@ -83,6 +84,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home/penyedia', function () {
         return view('PenyediaKost.home');
     });
+
+    Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');
 
     Route::get('/menu/penyewa', [PenyewaController::class, 'MenuPenyewa']);
 });

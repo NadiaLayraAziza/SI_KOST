@@ -32,7 +32,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Email</th>
-                                        <th>Kost</th>
+                                        <th>Kamar</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

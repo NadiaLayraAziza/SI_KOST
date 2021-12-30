@@ -24,6 +24,11 @@
                             <a class="btn btn-success" href="/admin/create"> Create Data </a>
                             <br>
                         </div>
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -48,14 +53,17 @@
                                                 <td>
                                                     {{-- <form action="#"> --}}
                                                     <form action="{{ route('admin.destroy', $item->id) }}" method="POST">
-                                                        <a class="btn btn-warning" href="/admin/{{$item->id}}/edit">
-                                                            <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"> Edit </i>
+                                                        <a class="btn btn-warning" href="/admin/{{ $item->id }}/edit">
+                                                            <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true">
+                                                                Edit </i>
                                                         </a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button
-                                                            class="btn btn-danger" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
-                                                            <i class="icon-copy fa fa-eraser" aria-hidden="true"> Delete </i>
+                                                        <button class="btn btn-danger"
+                                                            onclick="return confirm('Anda yakin ingin meghapus data ini ?')"
+                                                            type="submit">
+                                                            <i class="icon-copy fa fa-eraser" aria-hidden="true"> Delete
+                                                            </i>
                                                     </form>
                                                 </td>
                                             </tr>

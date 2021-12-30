@@ -41,7 +41,7 @@
         
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email">
+                                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" value="{{old('email')}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
@@ -50,14 +50,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
-                                        <input type="nama" name="nama" class="form-control" id="nama" aria-describedby="nama">
+                                        <input type="nama" name="nama" class="form-control" id="nama" aria-describedby="nama" value="{{old('nama')}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="no_hp">No Handphone</label>
-                                        <input type="no_hp" name="no_hp" class="form-control" id="no_hp" aria-describedby="no_hp">
+                                        <input type="no_hp" name="no_hp" class="form-control" id="no_hp" aria-describedby="no_hp" value="{{old('no_hp')}}">
                                     </div>
                                     <label for="alamat">Alamat </label>
-                                    <input type="alamat" class="form-control" name="alamat"><br>
+                                    <input type="alamat" class="form-control" name="alamat" value="{{old('alamat')}}"><br>
                                 </div>
                 
                                 <button type="submit" class="btn btn-primary">Submit</button><br>

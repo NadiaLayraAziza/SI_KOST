@@ -19,8 +19,8 @@ class HomePenyewaController extends Controller
 
     public function ShowKost($id_penyedia)
     {
-        $penyedia = Penyedia::with('users')->find($id_penyedia);
-        $peraturan = Peraturan::with('penyedia')->find($id_penyedia);
+        $penyedia = Penyedia::with('users')->where('id_penyedia',$id_penyedia)->first();
+        $peraturan = Peraturan::with('penyedia')->where('id_penyedia',$id_penyedia)->first();
         $isi_peraturan = Peraturan::with('penyedia')->where('id_penyedia', $id_penyedia)->value('peraturan');
         $arr_isi=explode("\r\n",$isi_peraturan);
         $jum_baris=count($arr_isi);

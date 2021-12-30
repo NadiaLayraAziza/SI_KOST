@@ -31,7 +31,7 @@
                 <a class="@yield('kamar')" href={{ route('kamar.index') }}><i class="fa fa-qrcode"></i> Kelola Kamar</a>
             </li>
             <li>
-                <a class="@yield('penyewa')" href="/menu/penyewa"><i class="fa fa-table"></i> Penyewa Kost</a>
+                <a class="@yield('penyewa')" href={{ route('penyewa.index') }}><i class="fa fa-table"></i> Penyewa Kost</a>
             </li>
             <li>
                 <a class="@yield('menu_report_penyedia')" href={{ route('Report.index') }}><i class="fa fa-qrcode"></i> Report</a>

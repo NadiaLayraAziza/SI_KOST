@@ -169,22 +169,24 @@ class PenyewaController extends Controller
     public function booking($id)
     {
         $user = Auth::user()->id;
-        if(Penyewa::where('user_id',$user)){
+        // if(Penyewa::where('user_id',$user)){
+        //     $user = Auth::user();
+        //     $penyedia = Kamar::with('penyedia')->find($id);
+        //     $kamar = Kamar::with('penyedia')->where('id_penyedia',$id);
+        //     $penyewa = Penyewa::with('users')->where('id_user',$user)->paginate(5);
+
+        //     return view('User.bookinghistory', compact('user','kamar','penyewa','penyedia'));
+        //     //return view('User.booking', compact('user','kamar'));
+
+        // } else{
+            // $user = Auth::user();
+            // $penyedia = Penyedia::with('users')->where('id_user',$user);
+            // $kamar = Kamar::with('penyedia')->where('id_penyedia',$penyedia);
+            //$penyewa = Penyewa::with('users')->find($user);
             $user = Auth::user();
-            $penyedia = Kamar::with('penyedia')->find($id);
-            $kamar = Kamar::with('penyedia')->where('id_penyedia',$id);
-            $penyewa = Penyewa::with('users')->where('id_user',$user)->paginate(5);
-
-            return view('User.bookinghistory', compact('user','kamar','penyewa','penyedia'));
-            //return view('User.booking', compact('user','kamar'));
-
-        } else{
-            $user = Auth::user();
-            $kamar = Kamar::with('penyedia')->find($user);
-            $penyewa = Penyewa::with('users')->find($user);
-            return view('User.booking', compact('user','kamar','penyewa'));
-        }
-
+            $kamar = Kamar::with('penyedia')->find($id);
+            return view('User.booking', compact('user','kamar'));
+            //return view('User.booking', compact('user','kamar','penyedia'));
 
     }
 }

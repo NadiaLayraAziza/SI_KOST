@@ -56,6 +56,48 @@
         <!-- /.row -->
     </div>
     <!-- /. PAGE INNER  -->
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">Report Semua User</div>
+                       {{-- Advanced Tables --}}
+                       <div class="col-md-40 col-sm-12 text-right">
+
+                        {{-- <a class="btn btn-success" href="{{ route('Report.create') }}"> Create Data </a> --}}
+                    </div>
+                    <br>
+                        <div class="cart-table clearfix">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Keluhan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($penyewa as $pe => $item)
+                                    <tr>
+                                        <td class="cart_product_desc">
+                                            <h5>{{ $item->tanggal_report }}</h5>
+                                        </td>
+                                        <td class="price">
+                                            <span>{{ $item->keluhan }}</span>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
 </div>
 <!-- /. PAGE WRAPPER  -->
 @endsection

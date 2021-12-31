@@ -17,8 +17,10 @@ class ReportPenyediaController extends Controller
      */
     public function index()
     {
-        $report = Report::all();
-        return view('PenyediaKost.report.index', compact('report'));
+        // $report = Report::all();
+        $report = Report::with('users')->where('users_id', Auth::user()->id)->get();
+        $penyewa = Report::all();
+        return view('PenyediaKost.report.index', compact('report','penyewa'));
     }
 
     /**

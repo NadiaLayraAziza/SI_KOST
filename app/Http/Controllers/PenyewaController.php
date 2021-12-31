@@ -176,18 +176,18 @@ class PenyewaController extends Controller
     {
         $user = Auth::user()->id;
 
-        if(Penyewa::where('id_user', $user)->first()){
-            $user = Auth::user();
-            // $penyedia = Kamar::with('penyedia')->where('kost',$id);
-            // $kamar = Kamar::with('penyedia')->where('id_penyedia',$id);
-            $penyewa = Penyewa::with('users')->where('id_user',$user->id)->paginate(5);
+        // if(Penyewa::where('id_user', $user)->first()){
+        //     $user = Auth::user();
+        //     // $penyedia = Kamar::with('penyedia')->where('kost',$id);
+        //     // $kamar = Kamar::with('penyedia')->where('id_penyedia',$id);
+        //     $penyewa = Penyewa::with('users')->where('id_user',$user->id)->paginate(5);
 
-            //dd($penyewa);
+        //     //dd($penyewa);
 
-            return view('User.bookinghistory', compact('user','penyewa'));
-            //return view('User.booking', compact('user','kamar'));
+        //     return view('User.bookinghistory', compact('user','penyewa'));
+        //     //return view('User.booking', compact('user','kamar'));
 
-        } else{
+        // } else{
             $user = Auth::user();
             // $penyedia = Penyedia::with('users')->where('id_user',$user)->first();
             $kamar = Kamar::with('penyedia')->where('id_kamar',$id)->first();
@@ -198,6 +198,6 @@ class PenyewaController extends Controller
             // $kamar = Kamar::with('penyedia')->find($id);
             //return view('User.booking', compact('user','kamar'));
             return view('User.booking', compact('user','kamar'));
-        }
+        // }
     }
 }

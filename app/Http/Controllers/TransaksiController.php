@@ -56,10 +56,11 @@ class TransaksiController extends Controller
         // $penyewa = Penyewa::with('users')->get();
         // $penyedia = Penyedia::where('nama_kost')->get();
         $user= Auth::user();
-        $kamar = Kamar::with('penyewa')->find($user);
-        //return view('User.payment', compact('penyewa','penyedia','user','transaksi'));
 
-        return view('User.payment', compact('user','kamar'));
+        $kamar = Kamar::with('penyewa')->where('id_user',$user);
+        $penyewa = Penyewa::with('users')->where('id_user',Auth::user()->id)->first();
+
+        return view('User.payment', compact('user','kamar','penyewa'));
 
         // $penyewa = Penyewa::with('user')->get();
         // $penyedia = Penyedia::where('nama_kost')->get();
@@ -74,53 +75,35 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->role == 'admin'){
-            $transaksi = Transaksi::all();
-            return view('SuperAdmin.transaksi.create', compact('transaksi'));
-        } else
-        if(Auth::user()->role == 'penyedia'){
-            $transaksi = Transaksi::all();
-            return view('SuperAdmin.transaksi.create', compact('transaksi'));
-        }
         //TODO : Implementasikan Proses Simpan Ke Database
-        $transaksi = new Transaksi();
-
-        $penyewa_id = Auth::user();
-        $penyewa_harga = Penyewa::with('Users')->harga_sewa;
-        $transaksi->pengirim = $penyewa_id;
-        $transaksi->penerima = '1';
-        $transaksi->tanggal_transaksi = $request->get('tanggal_transaksi');
-        $transaksi->jumlah_transaki = $penyewa_harga;
-        $transaksi->bukti_transaksi = $request->get('bukti_transaksi');
-        $transaksi->jenis_transaksi = $request->get('jenis_transaksi');
-        $penyedia = $request->get('nama_kost');
-        // $transaksi->id_penyewa = $penyewa;
-        $jumlah = $request->get('harga_sewa');
-        $transaksi->jumlah = $jumlah;
-        $transaksi->tanggal_transaksi = $request->get('tanggal_transaksi');
-
-        $status = $request->get('status_transaksi');
-        $transaksi->status = $status;
-
-        // $updatePenyewa = Penyewa::find($penyewa);
-
         $request->validate([
-            'users_id' => 'required',
-            'nama_kost' => 'required',
-            'bukti_transaksi' => 'required',
-            // 'harga_sewa' => 'required|integer|max:'. $updatePenyewa->jumlah,
-            'tanggal_transaksi' => 'required|date',
-            'jenis_transaksi' => 'required',
-            'status_transaksi' => 'required',
+            'harga_sewa' => 'required',
+            'tanggal_transaksi' => 'required',
         ]);
 
-        if($status == 'lunas'){
-            // $updatePenyewa->jumlah -= $transaksi->jumlah;
+        if ($request->file('bukti_transaksi')) {
+            $image_name = $request->file('bukti_transaksi')->store('images', 'public');
         }
+
+        $transaksi = new Transaksi();
+
+        $penyewa_id = Auth::user()->id;
+        $penyewa =Auth::user();
+        // $penyewa_harga = Penyewa::with('Users')->harga_sewa;
+        $transaksi->pengirim = $penyewa_id;
+        $transaksi->penerima = '1';
+        //$transaksi->tanggal_transaksi = $request->get('tanggal_transaksi');
+        $transaksi->bukti_transaksi = $image_name;
+        $transaksi->jumlah_transaksi = $request->get('harga_sewa');
+        $transaksi->jenis_transaksi = 'masuk';
+        $transaksi->status_transaksi ='done';
+
         $transaksi->save();
-        // $updatePenyewa->save();
+
+        // dd($transaksi);
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi Berhasil Dilakukan');
+        //return redirect()->route('/')->with('success', 'Transaksi Berhasil Dilakukan');
+        return view('User.home', compact('user','kamar','penyewa'));
     }
 
     /**

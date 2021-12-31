@@ -58,7 +58,6 @@
                                     <td>{{ $data->users->email }}</td>
                                     <td class="center">{{ $data->penyedia->nama_kost }}</td>
                                     <td class="center">{{ $data->kamar->tipe_kamar }}</td>
-                                    
                                 </tr>
                                 @endforeach
                             </tbody>

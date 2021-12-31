@@ -42,22 +42,29 @@
                             <div class="form-group row">
                                 <label for="gambar" class="col-md-4 col-form-label text-md-right">Nama Penyewa</label>
                                 <div class="col-md-6">
-                                    <input class="uploads form-control" type="text" style="margin-top: 20px;" name="id_user" value="{{ $user->nama }}"></br>
+                                    <input class="uploads form-control" type="text" style="margin-top: 20px;" name="id_user" value="{{ $user->nama }}" readonly></br>
                                 </div>
                             </div>
-                           
+
                             <div class="form-group row">
-                                <label for="gambar" class="col-md-4 col-form-label text-md-right">Gambar</label>
+                                <label for="gambar" class="col-md-4 col-form-label text-md-right">Total Yang harus dibayarkan</label>
+                                <div class="col-md-6">
+                                    <input class="uploads form-control" type="text" style="margin-top: 20px;" name="harga_sewa" value="{{ $penyewa->harga_sewa }}" readonly></br>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="gambar" class="col-md-4 col-form-label text-md-right">Bukti Transfer</label>
                                 <div class="col-md-6">
                                     {{-- <img class="product" width="200" height="200" @if($user->gambar) src="{{ asset('storage/'.$user->gambar) }}" @endif /> --}}
-                                    <input class="uploads form-control" type="file" style="margin-top: 20px;" name="gambar" ></br>
+                                    <input class="uploads form-control" type="file" style="margin-top: 20px;" name="bukti_transaksi" ></br>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Pembayaran') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="date" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="date" class="form-control" name="tanggal_transaksi" required autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="form-group row mb-0">

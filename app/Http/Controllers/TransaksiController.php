@@ -74,7 +74,7 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->role == 'penyewa'){
+        if (Auth::user()->role == 'admin'){
             $transaksi = Transaksi::all();
             return view('SuperAdmin.transaksi.create', compact('transaksi'));
         } else
@@ -93,7 +93,6 @@ class TransaksiController extends Controller
         $transaksi->jumlah_transaki = $penyewa_harga;
         $transaksi->bukti_transaksi = $request->get('bukti_transaksi');
         $transaksi->jenis_transaksi = $request->get('jenis_transaksi');
-
         $penyedia = $request->get('nama_kost');
         // $transaksi->id_penyewa = $penyewa;
         $jumlah = $request->get('harga_sewa');

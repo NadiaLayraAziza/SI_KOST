@@ -32,6 +32,7 @@
                                         <th>No</th>
                                         <th>Pengirim</th>
                                         <th>Penerima</th>
+                                        <th>Tanggal Transaksi</th>
                                         <th>Jumlah Transaksi</th>
                                         <th>Jenis Transaksi</th>
                                         <th>Status</th>

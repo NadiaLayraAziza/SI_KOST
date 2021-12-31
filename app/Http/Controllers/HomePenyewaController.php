@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kamar;
 use App\Models\Penyedia;
+use App\Models\Penyewa;
 use App\Models\Peraturan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,5 +48,11 @@ class HomePenyewaController extends Controller
         $arr_isi=explode("\r\n",$isi_fasilitas);
         $jum_baris=count($arr_isi);
         return view('User.detailkamar', compact('kamar','jum_baris'));
+    }
+    public function HistoryBooking(){
+        $user = Auth::user()->id;
+        //$kamar = Kamar::with('penyedia')->findOrFail($id_kamar);
+        $penyewa = Penyewa::with('users')->where('id_user',$user)->first();
+        return view('User.bookinghistory', compact('penyewa','user'));
     }
 }

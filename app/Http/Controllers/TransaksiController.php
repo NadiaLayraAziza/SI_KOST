@@ -60,7 +60,7 @@ class TransaksiController extends Controller
         $kamar = Kamar::with('penyewa')->where('id_user',$user);
         $penyewa = Penyewa::with('users')->where('id_user',Auth::user()->id)->first();
 
-        return view('User.payment', compact('user','kamar','penyewa'));
+        return view('User.bookinghistory', compact('user','kamar','penyewa'));
 
         // $penyewa = Penyewa::with('user')->get();
         // $penyedia = Penyedia::where('nama_kost')->get();
@@ -102,8 +102,8 @@ class TransaksiController extends Controller
 
         // dd($transaksi);
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        //return redirect()->route('/')->with('success', 'Transaksi Berhasil Dilakukan');
-        return view('User.home', compact('user','kamar','penyewa'));
+        return redirect()->route('HomeUser.index')->with('success', 'Transaksi Berhasil Dilakukan');
+        //return view('User.home', compact('user','kamar','penyewa'));
     }
 
     /**

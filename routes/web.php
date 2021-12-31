@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomePenyewaController::class, 'index'])->name('HomeUser');
+Route::get('/historybooking', [HomePenyewaController::class, 'index'])->name('HistoryBooking');
 
 Route::get('/ShowKost/{id_penyedia}', [HomePenyewaController::class, 'ShowKost'])->name('DetailKost');
 Route::get('/PilihKamar/{id_penyedia}', [HomePenyewaController::class, 'PilihKamar'])->name('PilihKamar');
@@ -54,9 +55,9 @@ Route::resource('kamar', KamarController::class);
 Route::resource('Report', ReportPenyediaController::class);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/booking/user', function () {
-        return view('User.booking');
-    });
+    // Route::get('/booking/user', function () {
+    //     return view('User.booking');
+    // });
     // Route::get('/booking/{id}', [UserController::class, 'booking']);
 
     // Route::get('/payment/user', function () {

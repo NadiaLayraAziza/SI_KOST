@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Penyedia;
+use App\Models\Penyewa;
 
 class Kamar extends Model
 {
@@ -27,5 +28,10 @@ class Kamar extends Model
     public function penyedia()
     {
         return $this->belongsTo(Penyedia::class, 'id_penyedia');
+    }
+
+    public function penyewa()
+    {
+        return $this->hasOne(Penyewa::class);
     }
 }

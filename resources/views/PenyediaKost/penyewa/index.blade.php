@@ -33,7 +33,7 @@
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Kamar</th>
-                                        <th>Action</th>
+                                        {{-- <th>Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,7 +43,7 @@
                                         <td>{{ $data->users->nama }}</td>
                                         <td>{{ $data->users->email }}</td>
                                         <td class="center">{{ $data->penyedia->nama_kost }}</td>
-                                        <td>
+                                        {{-- <td>
                                             <form action="{{ route('penyewa.destroy', $data->id_penyewa) }}" method="POST">
                                                 <a href="{{ route('penyewa.show', $data->id_penyewa) }}" class="btn btn-info">
                                                     <i class="icon-copy fa fa-info-circle" aria-hidden="true"></i>
@@ -56,7 +56,7 @@
                                                 <button onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit" class="btn btn-danger" >
                                                 <i class="icon-copy fa fa-eraser" aria-hidden="true"></i>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     @endforeach
                                 </tbody>

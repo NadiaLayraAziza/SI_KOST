@@ -3,7 +3,7 @@
     active-menu
 @endsection
 @section('content')
-<div id="page-wrapper" >
+<div id="page-wrapper">
     <div class="header">
         <h1 class="page-header">
             Halaman Report
@@ -36,10 +36,10 @@
                                 <tbody>
                                     @foreach ($report as $re => $data)
                                     <tr>
-                                        <td class="cart_product_desc">
-                                            <h5>{{ $data->tanggal_report }}</h5>
+                                        <td>
+                                            <span>{{ $data->tanggal_report }}</span>
                                         </td>
-                                        <td class="price">
+                                        <td>
                                             <span>{{ $data->keluhan }}</span>
                                         </td>
                                     </tr>
@@ -61,9 +61,9 @@
             <div class="col-md-12">
                 <!-- Advanced Tables -->
                 <div class="panel panel-default">
-                    <div class="panel-heading">Report Semua User</div>
+                    <div class="panel-heading">Report Semua User
                        {{-- Advanced Tables --}}
-                       <div class="col-md-40 col-sm-12 text-right">
+                       <div class="col-md-40 col-sm-12 text-right"><br>
 
                         {{-- <a class="btn btn-success" href="{{ route('Report.create') }}"> Create Data </a> --}}
                     </div>
@@ -74,16 +74,20 @@
                                     <tr>
                                         <th>Tanggal</th>
                                         <th>Keluhan</th>
+                                        <th>Created By</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($penyewa as $pe => $item)
                                     <tr>
-                                        <td class="cart_product_desc">
-                                            <h5>{{ $item->tanggal_report }}</h5>
+                                        <td>
+                                            <span>{{ $item->tanggal_report }}</span>
                                         </td>
-                                        <td class="price">
+                                        <td>
                                             <span>{{ $item->keluhan }}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{ $item->users->role }}</span>
                                         </td>
                                     </tr>
                                     @endforeach

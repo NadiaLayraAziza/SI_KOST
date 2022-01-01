@@ -30,7 +30,7 @@ class PenyewaController extends Controller
             // $penyewa = Penyewa::with('users')->get();
             // $kamar = Kamar::with('Penyewa')->get();
             $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
-            $penyewa = Penyewa::with('users')->paginate(5);
+            $penyewa = Penyewa::with('users','kamar')->paginate(5);
             $kamar = Kamar::with('Penyedia')->paginate(5);
 
             return view('PenyediaKost.penyewa.index', compact('kamar','penyewa'));
@@ -79,7 +79,7 @@ class PenyewaController extends Controller
 
         $penyewa->save();
         Alert::success('Success', 'Kamar Berhasil Dibooking');
-        return redirect()->route('transaksi.create');
+        return redirect()->route('HistoryBooking');
 
         // $request->validate([
         //     'id_penyewa' => 'required',
@@ -199,5 +199,14 @@ class PenyewaController extends Controller
             //return view('User.booking', compact('user','kamar'));
             return view('User.booking', compact('user','kamar'));
         // }
+    }
+
+    public function HistoryBooking()
+    {
+        $user = Auth::user();
+            // $penyedia = Kamar::with('penyedia')->where('kost',$id);
+            // $kamar = Kamar::with('penyedia')->where('id_penyedia',$id);
+        $penyewa = Penyewa::with('users')->where('id_user',$user->id)->paginate(5);
+        return view('User.bookinghistory', compact('user','penyewa'));
     }
 }

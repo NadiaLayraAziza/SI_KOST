@@ -1,5 +1,7 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_penyewa', 'active')
+@section('menu_penyewa')
+    active-menu
+@endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
@@ -45,11 +47,11 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="kost">Pilih Kost</label>
-                                        <input class="form-control" type="text" name="kost" id="kost" value="{{ $penyewa->kost->nama_kost }}" aria-describedby="kost" placeholder="Disabled input" disabled="">
+                                        <input class="form-control" type="text" name="kost" id="kost" value="{{ $penyewa->penyedia->nama_kost }}" aria-describedby="kost" placeholder="Disabled input" disabled="">
                                     </div>
                                     <div class="form-group">
                                         <label for="id_kmr">Pilih Kamar</label>
-                                        <input class="form-control" type="text" name="id_kmr" id="id_kmr" value="{{ $penyewa->id_kmr->tipe_kamar }}" aria-describedby="id_kmr" placeholder="Disabled input" disabled="">
+                                        <input class="form-control" type="text" name="id_kmr" id="id_kmr" value="{{ $penyewa->kamar->tipe_kamar }}" aria-describedby="id_kmr" placeholder="Disabled input" disabled="">
                                     </div>
                                     <div class="form-group">
                                         <label for="jangka_waktu">Pilih Jangka Waktu</label>

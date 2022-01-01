@@ -134,7 +134,7 @@ class KamarController extends Controller
         $kamar = Kamar::with('penyedia')->where('id_kamar', $id_kamar)->first();
         $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
 
-        if ($request->file('Foto_Kamar' == '')) {
+        if ($request->file('Foto_Kamar') == '') {
             $kamar->tipe_kamar = $request->get('tipe_kamar');
             $kamar->fasilitas = $request->get('fasilitas');
             $kamar->Harga_Tahunan = $request->get('Harga_Tahunan');
@@ -178,7 +178,7 @@ class KamarController extends Controller
     public function destroy($id)
     {
         Kamar::find($id)->delete();
-        Alert::success('Success', 'Data Penyewa berhasil dihapus');
+        Alert::success('Success', 'Data Kamar berhasil dihapus');
         return redirect()->route('kamar.index');
     }
 }

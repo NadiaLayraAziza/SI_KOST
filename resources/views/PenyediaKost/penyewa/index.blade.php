@@ -32,6 +32,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Email</th>
+                                        <th>No.Telepon</th>
                                         <th>Kamar</th>
                                         {{-- <th>Action</th> --}}
                                     </tr>
@@ -42,7 +43,8 @@
                                         <td>{{ $pyw + $penyewa->firstitem() }}</td>
                                         <td>{{ $data->users->nama }}</td>
                                         <td>{{ $data->users->email }}</td>
-                                        <td class="center">{{ $data->penyedia->nama_kost }}</td>
+                                        <td>{{ $data->users->no_hp }}</td>
+                                        <td class="center">{{ $data->kamar->tipe_kamar }}</td>
                                         {{-- <td>
                                             <form action="{{ route('penyewa.destroy', $data->id_penyewa) }}" method="POST">
                                                 <a href="{{ route('penyewa.show', $data->id_penyewa) }}" class="btn btn-info">

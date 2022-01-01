@@ -29,7 +29,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Kos</th>
                                             <th>Tipe Kamar</th>
                                             <th>Jumlah</th>
@@ -37,9 +37,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($kamar as $item)
+                                        @foreach ($kamar as $k => $item)
                                             <tr>
-                                                <td>{{ $item->id_kamar }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->penyedia->nama_kost }}</td>
                                                 <td>{{ $item->tipe_kamar }}</td>
                                                 <td>{{ $item->jumlah }}</td>

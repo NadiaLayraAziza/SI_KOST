@@ -15,9 +15,9 @@
                 <a class="@yield('menu_penyewa')" href={{ route('penyewa.index') }}><i class="fa fa-qrcode"></i> Penyewa Kost</a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a class="@yield('transaksi')"  href={{ route('transaksi.index') }}><i class="fa fa-table"></i> Transaksi</a>
-            </li>
+            </li> --}}
             <li>
                 <a class="@yield('report')" href="/report/admin"><i class="fa fa-edit"></i> Report </a>
             </li>

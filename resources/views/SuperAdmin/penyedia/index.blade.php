@@ -34,7 +34,6 @@
                                             <th>Nama Penyedia</th>
                                             <th>Nama Kost</th>
                                             <th>Alamat Kost</th>
-                                            <th>Foto</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -45,9 +44,8 @@
                                                 <td>{{ $item->users->nama }}</td>
                                                 <td>{{ $item->nama_kost }}</td>
                                                 <td>{{ $item->alamat_kost }}</td>
-                                                <td><img src="{{ asset('storage/' . $item->foto_kost) }}" width="100px;" height="150px;" alt=""></td>
                                                 <td>
-                                                    <form action="{{ route('penyedia.destroy', $item->id_penyedia) }}" method="POST"">
+                                                    <form action="{{ route('penyedia.destroy', $item->id_penyedia) }}" method="POST">
                                                         <a class="btn btn-info" href="{{ route('penyedia.show', $item->id_penyedia) }}">
                                                             <i class="icon-copy fa fa-eye-square-o" aria-hidden="true"> Detail </i>
                                                         </a>

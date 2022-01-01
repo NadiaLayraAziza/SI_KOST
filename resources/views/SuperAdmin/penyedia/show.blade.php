@@ -1,16 +1,16 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_penyedia')
+@section('penyediakost')
     active-menu
 @endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
         <h1 class="page-header">
-            Edit Data Penyedia Kost
+            Detail Data Penyedia Kost
         </h1>
         <ol class="breadcrumb">
             <li><a href="#">Penyedia</a></li>
-            <li class="active">Edit</li>
+            <li class="active">Detail</li>
         </ol>
     </div>
 
@@ -63,12 +63,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="foto_kost">Foto Kost</label>
-                                        <img width="200" height="200" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
+                                        <img width="200" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
                                         {{-- <input class="uploads form-control" type="file" name="foto_kost" id="foto_kost" > --}}
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-                                <button type="submit" class="btn btn-info">Edit Button</button>
+                                <div class="col-lg-12">
+                                    <a class="btn btn-info" href="{{ route('penyedia.edit', $penyedia->id_penyedia) }}">Edit Button</a>
+                                </div>
                             </form>
                         </div>
                         <!-- /.row (nested) -->
@@ -90,22 +92,25 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Kos</th>
+                                            <th>No</th>
+                                            <th>Foto Kamar</th>
                                             <th>Tipe Kamar</th>
                                             <th>Jumlah</th>
-                                            <th>Action</th>
+                                            <th>Fasilitas</th>
+                                            <th>Harga</th>
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($kamar as $item)
                                             <tr>
-                                                <td>{{ $item->id_kamar }}</td>
-                                                <td>{{ $item->penyedia->nama_kost }}</td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <img width="150px" @if($item->Foto_Kamar) src="{{ asset('storage/'.$item->Foto_Kamar) }}" @endif />
+                                                </td>
                                                 <td>{{ $item->tipe_kamar }}</td>
                                                 <td>{{ $item->jumlah }}</td>
-                                                <td>
-                                                    {{-- <form action="#"> --}}
+                                                {{-- <td>
                                                     <form action="{{ route('kamar.destroy', $item->id_kamar) }}" method="POST">
                                                         <a class="btn btn-warning" href="{{ route('kamar.edit', $item->id_kamar) }}">
                                                             <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"> Edit </i>
@@ -119,6 +124,15 @@
                                                             class="btn btn-danger" onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit">
                                                             <i class="icon-copy fa fa-eraser" aria-hidden="true"> Delete </i>
                                                     </form>
+                                                </td> --}}
+                                                <td>
+                                                    <textarea class="form-control" rows="{{ $jum_baris }}" type="fasilitas" name="fasilitas" id="fasilitas" aria-describedby="fasilitas" disabled>{{ $item->fasilitas }}</textarea>
+                                                </td>
+                                                <td>
+                                                    Tahunan : {{ $item->Harga_Tahunan }}<br>
+                                                    Bulanan : {{ $item->Harga_bulanan }}<br>
+                                                    Mingguan : {{ $item->Harga_mingguan }}<br>
+                                                    Harian : {{ $item->Harga_harian }}<br>
                                                 </td>
                                             </tr>
                                         @endforeach

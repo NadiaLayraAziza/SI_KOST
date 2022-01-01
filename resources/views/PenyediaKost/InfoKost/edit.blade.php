@@ -28,7 +28,7 @@
                                         <div class="form-group">
                                             <label for="foto_kost">Foto Kost</label>
                                             <img width="200" height="120" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
-                                            <input class="form-control upload" type="file" name="foto_kost" id="foto_kost" aria-describedby="foto_kost">
+                                            <input class="upload form-control" type="file" name="foto_kost" id="foto_kost">
                                         </div>
                                         <div class="form-group">
                                             <label for="nama_kost">Nama Kost</label>

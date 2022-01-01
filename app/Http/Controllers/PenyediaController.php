@@ -89,7 +89,10 @@ class PenyediaController extends Controller
     {
         $penyedia = Penyedia::all()->find($id);
         $kamar = Kamar::with('penyedia')->where('id_penyedia', $id)->get();
-        return view('SuperAdmin.penyedia.show', compact('penyedia','kamar'));
+        $isi_fasilitas = Kamar::with('penyedia')->where('id_penyedia', $id)->value('fasilitas');
+        $arr_isi=explode("\r\n",$isi_fasilitas);
+        $jum_baris=count($arr_isi);
+        return view('SuperAdmin.penyedia.show', compact('penyedia','kamar','jum_baris'));
     }
 
     /**
@@ -114,14 +117,18 @@ class PenyediaController extends Controller
      */
     public function update(Request $request, $id_penyedia)
     {
+        $user_id = Penyedia::with('users')->where('id_penyedia', $id_penyedia)->value('id_user');
+        $user = User::find($user_id);
+        $user->nama = $request->input('nama');
+        $user->alamat = $request->input('alamat');
+        $user->email = $request->input('email');
+        $user->no_hp = $request->input('no_hp');
+        $user->save();
+
         //melakukan validasi data
         $request->validate([
             'nama_kost' => 'required',
             'alamat_kost' => 'required',
-            'alamat' => 'required',
-            'nama' => 'required',
-            'no_hp' => 'required',
-            'email' => 'required|email',
             ]);
 
             $penyedia = Penyedia::with('users')->where('id_penyedia', $id_penyedia)->first();
@@ -154,10 +161,10 @@ class PenyediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_penyedia)
     {
-        Kamar::where('id_penyedia',$id)->delete();
-        Penyedia::find($id)->delete();
+        Kamar::with('penyedia')->where('id_penyedia',$id_penyedia)->delete();
+        Penyedia::find($id_penyedia)->delete();
         Alert::success('Success', 'Data Penyedia berhasil dihapus');
         return redirect()->route('penyedia.index');
     }
@@ -189,7 +196,7 @@ class PenyediaController extends Controller
         ->update([
             'role' => "Penyedia"
         ]);
-        
+
         Alert::success('Success', 'Kost telah berhasil didaftarkan');
         return redirect()->to('home/penyedia');
 

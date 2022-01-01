@@ -31,28 +31,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomePenyewaController::class, 'index'])->name('HomeUser');
-Route::get('/historybooking', [HomePenyewaController::class, 'index'])->name('HistoryBooking');
 
 Route::get('/ShowKost/{id_penyedia}', [HomePenyewaController::class, 'ShowKost'])->name('DetailKost');
+
 Route::get('/PilihKamar/{id_penyedia}', [HomePenyewaController::class, 'PilihKamar'])->name('PilihKamar');
+
 Route::get('/PilihKamar/DetailKamar/{id_kamar}', [HomePenyewaController::class, 'DetailKamar'])->name('DetailKamar');
-Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');
-
-Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
-
-Route::resource('admin', SuperAdminController::class);
-
-Route::resource('penyewa', PenyewaController::class);
-
-Route::resource('transaksi', TransaksiController::class);
-
-Route::resource('penyedia', PenyediaController::class);
-
-Route::resource('peraturan', PeraturanController::class);
-
-Route::resource('kamar', KamarController::class);
-
-Route::resource('Report', ReportPenyediaController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     // Route::get('/booking/user', function () {
@@ -63,6 +47,25 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/payment/user', function () {
     //     return view('User.payment');
     // });
+
+    Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');
+
+    Route::get('/admin/home', [SuperAdminController::class, 'home'])->name('HomeSAdmin');
+
+    Route::resource('admin', SuperAdminController::class);
+
+    Route::resource('penyewa', PenyewaController::class);
+
+    Route::resource('transaksi', TransaksiController::class);
+
+    Route::resource('penyedia', PenyediaController::class);
+
+    Route::resource('peraturan', PeraturanController::class);
+
+    Route::resource('kamar', KamarController::class);
+
+    Route::resource('Report', ReportPenyediaController::class);
+
     Route::resource('transaksi', TransaksiController::class);
 
     Route::get('/report/user', function () {
@@ -91,9 +94,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/booking/{id_kamar}', [PenyewaController::class, 'Booking'])->name('Booking');
 
-    Route::get('/menu/penyewa', [PenyewaController::class, 'MenuPenyewa']);
-});
+    Route::get('/historybooking', [PenyewaController::class, 'HistoryBooking'])->name('HistoryBooking');
 
-Route::get('/report/admin', [ReportController::class, 'Admin']);
+    Route::get('/menu/penyewa', [PenyewaController::class, 'MenuPenyewa']);
+
+    Route::get('/report/admin', [ReportController::class, 'Admin']);
+});
 
 // Route::get('/penyediakost/home', [HomePenyediaController::class, 'home']);

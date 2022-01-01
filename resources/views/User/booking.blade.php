@@ -62,6 +62,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Kamar') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="id_kamar" type="text" class="form-control" name="id_kamar" required autocomplete="new-text" value="{{ $kamar->tipe_kamar }}" readonly>
+                                    <input id="id_kamar" type="text" class="form-control" name="id_penyedia" required autocomplete="new-text" value="{{ $kamar->penyedia->nama_kost }}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nomor HP/WA Ortu') }}</label>
 
                                 <div class="col-md-6">
@@ -69,24 +77,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Kamar') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="id_kamar" type="text" class="form-control" name="id_kamar" required autocomplete="new-text" value="{{ $kamar->id_kamar }}" readonly>
-                                    <input id="id_kamar" type="text" class="form-control" name="id_penyedia" required autocomplete="new-text" value="{{ $kamar->id_penyedia }}" readonly>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Jangka Waktu') }}</label>
 
                                 <div class="col-md-6">
                                     <select name="jangka_waktu" id="jangka_waktu" class="form-control jangka">
                                         <option value="">== Pilih jangka waktu ==</option>
-                                        <option value="1000">Tahunan</option>
-                                        <option value="100">Bulanan</option>
-                                        <option value="10">Mingguan</option>
-                                        <option value="1">Harian</option>
+                                        <option value="{{ $kamar->Harga_Tahunan }}">Tahunan</option>
+                                        <option value="{{ $kamar->Harga_bulanan }}">Bulanan</option>
+                                        <option value="{{ $kamar->Harga_mingguan }}">Mingguan</option>
+                                        <option value="{{ $kamar->Harga_harian }}">Harian</option>
                                     </select>
                                     {{-- <input type="button" id="showVal" value="try" /> --}}
 

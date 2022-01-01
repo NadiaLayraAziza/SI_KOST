@@ -81,27 +81,29 @@ class HomePenyediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_penyedia)
+    public function update(Request $request, $id)
     {
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $user->nama = $request->input('nama');
+        $user->no_hp = $request->input('no_hp');
+        $user->save();
+
         //validasi
         $request->validate([
-            'foto_kost' => 'required',
+            // 'foto_kost' => 'required',
             'nama_kost' => 'required',
             'alamat_kost' => 'required',
-            'nama' => 'required',
-            'no_hp' => 'required',
         ]);
 
-        $penyedia = Penyedia::with('users')->find($id_penyedia);
+        $penyedia = Penyedia::with('users')->find($id);
 
-        if ($request->file('foto_kost' == '')) {
+        if ($request->file('foto_kost') == '') {
             $penyedia->nama_kost = $request->get('nama_kost');
             $penyedia->alamat_kost = $request->get('alamat_kost');
-            $penyedia->users->nama = $request->get('nama');
-            $penyedia->users->no_hp = $request->get('no_hp');
             $penyedia->save();
 
-        } else{
+        } else {
             if ($penyedia->foto_kost && file_exists(storage_path('app/public/' .$penyedia->foto_kost)))
             {
                 \Storage::delete(['public/' . $penyedia->foto_kost]);
@@ -111,8 +113,6 @@ class HomePenyediaController extends Controller
             $penyedia->foto_kost = $image_name;
             $penyedia->nama_kost = $request->get('nama_kost');
             $penyedia->alamat_kost = $request->get('alamat_kost');
-            $penyedia->users->nama = $request->get('nama');
-            $penyedia->users->no_hp = $request->get('no_hp');
             $penyedia->save();
         }
 

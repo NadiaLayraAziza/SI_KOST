@@ -21,8 +21,7 @@ class ReportController extends Controller
         // $report = Report::join('users', 'penyewa.user_id', '=', 'users.id') ->join('users', 'penyedia.user_id', '=', 'users.id')
         //             ->get(['users.name']);
         // return view('report.index', ['report' => $report]);
-
-        $report = Report::all();
+        $report = Report::with('users')->where('users_id', Auth::user()->id)->get();
         return view('User.report.index', compact('report'));
     }
 

@@ -52,9 +52,9 @@
                                                 <a href="{{ route('penyewa.show', $data->id_penyewa) }}" class="btn btn-info">
                                                     <i class="icon-copy fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{ route('penyewa.edit', $data->id_penyewa) }}" class="btn btn-warning">
+                                                {{-- <a href="{{ route('penyewa.edit', $data->id_penyewa) }}" class="btn btn-warning">
                                                     <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                </a>
+                                                </a> --}}
                                                 @csrf
                                                 @method('DELETE')
                                                 <button onclick="return confirm('Anda yakin ingin meghapus data ini ?')" type="submit" class="btn btn-danger" >

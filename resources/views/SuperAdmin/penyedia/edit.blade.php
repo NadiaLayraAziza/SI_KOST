@@ -1,5 +1,5 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_penyedia')
+@section('penyediakost')
     active-menu
 @endsection
 @section('content')
@@ -35,20 +35,20 @@
                                 @method('PUT')
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="id_user">Nama Lengkap</label>
-                                        <input class="form-control" type="text" name="nama" id="id_user" value="{{ $penyedia->users->nama }}" aria-describedby="id_user" placeholder="">
+                                        <label for="nama">Nama Lengkap</label>
+                                        <input class="form-control" type="text" name="nama" id="nama" value="{{ $penyedia->users->nama }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_user">Alamat Sesuai KTP</label>
-                                        <input class="form-control" type="text" name="alamat" id="id_user" value="{{ $penyedia->users->alamat }}" aria-describedby="id_user" placeholder="">
+                                        <label for="alamat">Alamat Pemilik Kost (Sesuai KTP)</label>
+                                        <input class="form-control" type="text" name="alamat" id="alamat" value="{{ $penyedia->users->alamat }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_user">Email</label>
-                                        <input class="form-control" type="email" name="email" id="id_user" value="{{ $penyedia->users->email }}" aria-describedby="id_user" placeholder="">
+                                        <label for="email">Email</label>
+                                        <input class="form-control" type="email" name="email" id="email" value="{{ $penyedia->users->email }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_user">No Telepon</label>
-                                        <input class="form-control" type="text" name="no_hp" id="id_user" value="{{ $penyedia->users->no_hp }}" aria-describedby="id_user" placeholder="">
+                                        <label for="no_hp">No Telepon</label>
+                                        <input class="form-control" type="text" name="no_hp" id="no_hp" value="{{ $penyedia->users->no_hp }}" aria-describedby="id_user" placeholder="">
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -63,13 +63,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="foto_kost">Foto Kost</label>
-                                        <img width="200" height="200" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
+                                        <img width="125" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif /><br><br>
                                         <input class="uploads form-control" type="file" name="foto_kost" id="foto_kost" >
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-                                <button type="submit" class="btn btn-info">Submit Button</button>
-                                <button type="reset" class="btn btn-danger">Reset Button</button>
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-info">Submit Button</button>
+                                    <button type="reset" class="btn btn-danger">Reset Button</button>
+                                </div>
                             </form>
                         </div>
                         <!-- /.row (nested) -->

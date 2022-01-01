@@ -10,7 +10,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
-            <li class="active">Peraturan</li>
+            <li><a href="#">Peraturan</a></li>
+            <li class="active">Create</li>
         </ol>
     </div>
 

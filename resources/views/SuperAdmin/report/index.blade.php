@@ -26,7 +26,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>ID Report</th>
+                                            <th>No</th>
                                             <th>Nama</th>
                                             <th>Role</th>
                                             <th>Tanggal Report</th>
@@ -36,7 +36,7 @@
                                     <tbody>
                                         @foreach ($report as $item)
                                             <tr>
-                                                <td>{{ $item->id_report }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->users->nama }}</td>
                                                 <td>{{ $item->users->role }}</td>
                                                 <td>{{ $item->tanggal_report }}</td>

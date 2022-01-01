@@ -1,10 +1,12 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_kamar', 'active')
+@section('kamar')
+    active-menu
+@endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
         <h1 class="page-header">
-            Create Data Kamar Kost
+            Tambah Data Kamar Kost
         </h1>
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>

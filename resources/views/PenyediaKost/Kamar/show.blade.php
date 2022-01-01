@@ -1,15 +1,17 @@
 @extends('layouts-admin.ViewAdmin')
-@section('menu_kamar', 'active')
+@section('kamar')
+    active-menu
+@endsection
 @section('content')
 <div id="page-wrapper" >
     <div class="header">
         <h1 class="page-header">
-            Edit Data Kamar Kost
+            Detail Data Kamar Kost
         </h1>
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
             <li><a href="#">Kamar</a></li>
-            <li class="active">Edit</li>
+            <li class="active">Detail</li>
         </ol>
     </div>
 
@@ -32,7 +34,7 @@
                                         </div> --}}
                                         <div class="form-group">
                                             <label for="Foto_Kamar">Foto Kamar</label>
-                                            <img width="200" height="200" @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif />
+                                            <img width="200" @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif />
                                         </div>
                                         <div class="form-group">
                                             <label for="fasilitas">Fasilitas</label>
@@ -61,7 +63,7 @@
                                         </div>
                                     </form>
                                         <div class="form-group">
-                                            <button type="back" class="btn btn-success" onclick="history.back()">Back</button>
+                                            <a class="btn btn-success" href="{{ route('kamar.index') }}">Back</a>
                                             <a class="btn btn-info" href="{{ route('kamar.edit', $kamar->id_kamar) }}">
                                                 Edit
                                             </a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kamar;
+use App\Models\Oracle;
 use App\Models\Penyedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,9 +58,16 @@ class KamarController extends Controller
             'jumlah' => 'required',
         ]);
 
-        if ($request->file('Foto_Kamar')) {
-            $image_name = $request->file('Foto_Kamar')->store('images', 'public');
-        }
+        // if ($request->file('Foto_Kamar')) {
+        //     $image_name = $request->file('Foto_Kamar')->store('images', 'public');
+        // }
+        $payload = $request->except(['Foto_Kamar']);
+            if ($request->hasFile('Foto_Kamar')) {
+                $file = $request->file('Foto_Kamar');
+                $oracle = new Oracle();
+                $response = $oracle->uploadObject($file, 'gambar');
+                $payload['Foto_Kamar']= $response;
+            }
 
         $penyedia = Penyedia::where('id_user', Auth::user()->id)->value('id_penyedia');
 
@@ -71,7 +79,8 @@ class KamarController extends Controller
         $kamar->Harga_bulanan = $request->get('Harga_bulanan');
         $kamar->Harga_mingguan = $request->get('Harga_mingguan');
         $kamar->Harga_harian = $request->get('Harga_harian');
-        $kamar->Foto_Kamar = $image_name;
+        // $kamar->Foto_Kamar = $image_name;
+        $kamar->Foto_Kamar = $response;
         $kamar->jumlah = $request->get('jumlah');
         $kamar->id_penyedia = $penyedia;
         $kamar->save();
@@ -148,11 +157,19 @@ class KamarController extends Controller
         } else{
             if ($kamar->Foto_Kamar && file_exists(storage_path('app/public/' .$kamar->Foto_Kamar)))
             {
-                \Storage::delete(['public/' . $kamar->Foto_Kamar]);
+                // \Storage::delete(['public/' . $kamar->Foto_Kamar]);
             }
-            $image_name = $request->file('Foto_Kamar')->store('images', 'public');
+            // $image_name = $request->file('Foto_Kamar')->store('images', 'public');
+            $payload = $request->except(['Foto_Kamar']);
+            if ($request->hasFile('Foto_Kamar')) {
+                $file = $request->file('Foto_Kamar');
+                $oracle = new Oracle();
+                $response = $oracle->uploadObject($file, 'gambar');
+                $payload['Foto_Kamar']= $response;
+            }
 
-            $kamar->Foto_Kamar = $image_name;
+            // $kamar->Foto_Kamar = $image_name;
+            $kamar->Foto_Kamar = $response;
             $kamar->tipe_kamar = $request->get('tipe_kamar');
             $kamar->fasilitas = $request->get('fasilitas');
             $kamar->Harga_Tahunan = $request->get('Harga_Tahunan');

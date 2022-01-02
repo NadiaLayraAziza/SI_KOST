@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="foto_kost">Foto Kost</label>
-                                        <img width="200" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif />
+                                        <img width="200" @if($penyedia->foto_kost) src="{{ asset($penyedia->foto_kost) }}" @endif />
                                         {{-- <input class="uploads form-control" type="file" name="foto_kost" id="foto_kost" > --}}
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <img width="150px" @if($item->Foto_Kamar) src="{{ asset('storage/'.$item->Foto_Kamar) }}" @endif />
+                                                    <img width="150px" @if($item->Foto_Kamar) src="{{ asset($item->Foto_Kamar) }}" @endif />
                                                 </td>
                                                 <td>{{ $item->tipe_kamar }}</td>
                                                 <td>{{ $item->jumlah }}</td>

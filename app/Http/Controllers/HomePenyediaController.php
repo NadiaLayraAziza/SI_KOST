@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Oracle;
 use Illuminate\Http\Request;
 use App\Models\Penyedia;
 use App\Models\Peraturan;
@@ -104,13 +105,21 @@ class HomePenyediaController extends Controller
             $penyedia->save();
 
         } else {
-            if ($penyedia->foto_kost && file_exists(storage_path('app/public/' .$penyedia->foto_kost)))
+            if ($penyedia->foto_kost && file_exists($penyedia->foto_kost))
             {
                 \Storage::delete(['public/' . $penyedia->foto_kost]);
             }
-            $image_name = $request->file('foto_kost')->store('images', 'public');
+            // $image_name = $request->file('foto_kost')->store('images', 'public');
+            $payload = $request->except(['foto_kost']);
+            if ($request->hasFile('foto_kost')) {
+                $file = $request->file('foto_kost');
+                $oracle = new Oracle();
+                $response = $oracle->uploadObject($file, 'gambar');
+                $payload['foto_kost']= $response;
+            }
 
-            $penyedia->foto_kost = $image_name;
+            // $penyedia->foto_kost = $image_name;
+            $penyedia->foto_kost = $response;
             $penyedia->nama_kost = $request->get('nama_kost');
             $penyedia->alamat_kost = $request->get('alamat_kost');
             $penyedia->save();

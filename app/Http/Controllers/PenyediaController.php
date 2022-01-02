@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kamar;
+use App\Models\Oracle;
 use App\Models\Penyedia;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -178,9 +180,16 @@ class PenyediaController extends Controller
             'foto_kost'=> 'required|file|image|mimes:jpeg,png,jpg',
         ]);
 
-        if ($request->file('foto_kost')) {
-            $image_name = $request->file('foto_kost')->store('images', 'public');
-        }
+        // if ($request->file('foto_kost')) {
+        //     $image_name = $request->file('foto_kost')->store('images', 'public');
+        // }
+        $payload = $request->except(['foto_kost']);
+            if ($request->hasFile('foto_kost')) {
+                $file = $request->file('foto_kost');
+                $oracle = new Oracle();
+                $response = $oracle->uploadObject($file, 'gambar');
+                $payload['foto_kost']= $response;
+            }
 
         $user = User::find(Auth::user()->id);
 
@@ -188,7 +197,8 @@ class PenyediaController extends Controller
         $penyedia->id_user = Auth::user()->id;
         $penyedia->nama_kost = $request->get('nama_kost');
         $penyedia->alamat_kost = $request->get('alamat_kost');
-        $penyedia->foto_kost = $image_name;
+        // $penyedia->foto_kost = $image_name;
+        $penyedia->foto_kost = $response;
         $penyedia->users()->associate($user);
         $penyedia->save();
 

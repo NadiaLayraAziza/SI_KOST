@@ -50,8 +50,8 @@
 
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a class="gallery_img" href="{{ asset('storage/'.$penyedia->foto_kost) }}">
-                                    <img style="width:480px;height:300px;" src="{{ asset('storage/'.$penyedia->foto_kost) }}">
+                                <a class="gallery_img" href="{{ asset($penyedia->foto_kost) }}">
+                                    <img style="width:480px;height:300px;" src="{{ asset($penyedia->foto_kost) }}">
                                 </a>
                             </div>
                         </div>

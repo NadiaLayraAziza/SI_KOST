@@ -35,7 +35,7 @@
                                         </div> --}}
                                         <div class="form-group">
                                             <label for="Foto_Kamar">Foto Kamar</label>
-                                            <img width="200" @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif /><br><br>
+                                            <img width="200" @if($kamar->Foto_Kamar) src="{{ asset($kamar->Foto_Kamar) }}" @endif /><br><br>
                                             <input class="form-control upload" type="file" name="Foto_Kamar" id="Foto_Kamar" aria-describedby="Foto_Kamar">
                                         </div>
                                         <div class="form-group">

@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="foto_kost">Foto Kost</label>
-                                        <img width="125" @if($penyedia->foto_kost) src="{{ asset('storage/'.$penyedia->foto_kost) }}" @endif /><br><br>
+                                        <img width="125" @if($penyedia->foto_kost) src="{{ asset($penyedia->foto_kost) }}" @endif /><br><br>
                                         <input class="uploads form-control" type="file" name="foto_kost" id="foto_kost" >
                                     </div>
                                 </div>

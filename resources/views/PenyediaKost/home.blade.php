@@ -20,7 +20,7 @@
                 <div class="jumbotron">
                     <h2>Info Kost {{ $data->nama_kost }}</h2>
                     <div class="col-lg-5">
-                        <img style="padding-top: 40pt" src="{{ asset('storage/'.$data->foto_kost) }}" height="220" />
+                        <img style="padding-top: 40pt" src="{{ asset($data->foto_kost) }}" height="220" />
                     </div>
                     <div class="col-lg-7">
                         <div class="table-responsive">

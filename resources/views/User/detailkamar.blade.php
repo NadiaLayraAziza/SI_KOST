@@ -51,7 +51,7 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <a class="gallery_img" href="{{ asset('storage/'.$kamar->Foto_Kamar) }}">
-                                    <img style="width:480px;height:300px;"  @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif>
+                                    <img style="width:480px;height:300px;"  @if($kamar->Foto_Kamar) src="{{ asset($kamar->Foto_Kamar) }}" @endif>
                                 </a>
                             </div>
                         </div>

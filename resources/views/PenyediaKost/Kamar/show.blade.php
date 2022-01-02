@@ -34,7 +34,7 @@
                                         </div> --}}
                                         <div class="form-group">
                                             <label for="Foto_Kamar">Foto Kamar</label>
-                                            <img width="200" @if($kamar->Foto_Kamar) src="{{ asset('storage/'.$kamar->Foto_Kamar) }}" @endif />
+                                            <img width="200" @if($kamar->Foto_Kamar) src="{{ asset($kamar->Foto_Kamar) }}" @endif />
                                         </div>
                                         <div class="form-group">
                                             <label for="fasilitas">Fasilitas</label>

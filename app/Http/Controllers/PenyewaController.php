@@ -73,9 +73,9 @@ class PenyewaController extends Controller
         $penyewa -> jangka_waktu = $request->get('jangka_waktu');
         $penyewa -> jumlah_waktu = $request->get('jumlah_waktu');
         $penyewa -> tgl_mulai = $request->get('tgl_mulai');
-        $penyewa -> kost = $request -> get ('id_penyedia');
-        $penyewa -> id_kmr = $request -> get ('id_kamar');
-        $penyewa -> harga_sewa = $request -> get ('harga_sewa');
+        $penyewa -> kost = $request -> get('kost');
+        $penyewa -> id_kmr = $request ->get('id_kamar');
+        $penyewa -> harga_sewa = $request -> get('harga_sewa');
 
         $penyewa->save();
         Alert::success('Success', 'Kamar Berhasil Dibooking');

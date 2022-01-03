@@ -61,12 +61,12 @@
                                     <input id="alamat" type="text" class="form-control" name="text_confirmation" value="{{ $user->alamat }}" required autocomplete="new-text" readonly>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" hidden>
                                 <label for="text-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Kamar') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="id_kamar" type="text" class="form-control" name="id_kamar" required autocomplete="new-text" value="{{ $kamar->tipe_kamar }}" readonly>
-                                    <input id="id_kamar" type="text" class="form-control" name="id_penyedia" required autocomplete="new-text" value="{{ $kamar->penyedia->nama_kost }}" readonly>
+                                <div class="col-md-6" hidden>
+                                    <input id="id_kamar" type="text" class="form-control" name="id_kamar" required autocomplete="new-text" value="{{ $kamar->id_kamar }}" readonly>
+                                    <input id="kost" type="text" class="form-control" name="kost" required autocomplete="new-text" value="{{ $kamar->penyedia->id_penyedia }}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
